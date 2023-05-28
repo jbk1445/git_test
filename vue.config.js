@@ -3,10 +3,13 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   devServer: {
     proxy: {
-      '/api': {
+      '^/api': {
         target: 'http://13.124.173.243:8080',
         changeOrigin: true,
-        ws: false
+        ws: false,
+        pathRewrite: {
+          '^/api': ''
+        }
       }
     }
   }

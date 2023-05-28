@@ -43,9 +43,9 @@ export default {
             email: this.email
           }
         })
-          .then(res => {
+          .then(response => {
             this.isCodeSent = true
-            this.verifycode = res.data
+            this.verifycode = response.data
             console.log(this.verifycode)
           })
           .catch(err => {
