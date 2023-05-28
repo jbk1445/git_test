@@ -1,21 +1,37 @@
 import http from './http'
 
-const token = localStorage.getItem('token')
-const headers = {
-  Authorization: `Bearer ${token}`
-}
-export async function post (url, data) {
+export function post (url, data) {
+  const token = localStorage.getItem('token')
+  const headers = {
+    Authorization: `Bearer ${token}`
+  }
   return http.post(url, data, { headers })
 }
-export async function get (url) {
+export function get (url) {
+  const token = localStorage.getItem('token')
+  const headers = {
+    Authorization: `Bearer ${token}`
+  }
   return http.get(url, { headers })
 }
-export async function patch (url, data) {
+export function patch (url, data) {
+  const token = localStorage.getItem('token')
+  const headers = {
+    Authorization: `Bearer ${token}`
+  }
   return http.patch(url, data, { headers })
 }
-export async function del (url) {
+export function del (url) {
+  const token = localStorage.getItem('token')
+  const headers = {
+    Authorization: `Bearer ${token}`
+  }
   return http.delete(url, { headers })
 }
-export async function view (url, params) {
-  return http.get(url, { params }, { headers })
+export function view (url, params) {
+  const token = localStorage.getItem('token')
+  const headers = {
+    Authorization: `Bearer ${token}`
+  }
+  return http.get(url, { params, headers })
 }

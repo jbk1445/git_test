@@ -3,8 +3,8 @@
       <h1>공지사항</h1>
   </div>
   <div class="titles">
-      <div  v-for="Board in Boards" :key="Board.id" class="list">
-          <router-link :to="`/Board/Notice/view/${Board.id}`" class="article">
+      <div  v-for="Board in Boards" :key="Board.noticeId" class="list">
+          <router-link :to="`/Board/notice/view/${Board.noticeId}`" class="article">
               <h2 class="medium">{{ Board.title }}</h2>
               <p class="small">{{ Board.content }}</p>
               <time class="small">{{ Board.createdAt }}</time>
@@ -28,7 +28,7 @@
   </template>
 
 <script>
-import http from '@/api/http'
+import * as https from '@/api/https'
 export default {
   data () {
     return {
@@ -58,7 +58,7 @@ export default {
       if (this.currentPage === 1) this.showBeforeButton = false
     },
     loadPage () {
-      http.get('/board/notice')
+      https.get('/board/notice')
         .then(response => {
           this.Boards = response.data
           this.showNextButton = response.headers['x-total-count'] > this.currentPage * this.pageSize
@@ -68,7 +68,7 @@ export default {
         })
     },
     writenotice () {
-      http.post('/board/notice', {
+      https.post('/board/notice', {
         title: '공지 테스트2',
         content: '공지 테스트 내용2'
       })
@@ -78,20 +78,6 @@ export default {
         .catch(error => {
           console.log(error)
         })
-    },
-    gettimedif (timestamp) {
-      const now = new Date().getTime()
-      const diffMs = now - timestamp
-      const diffMins = Math.round(diffMs / 1000 / 60)
-      if (diffMins < 60) {
-        return diffMins + '분 전'
-      } else if (diffMins < 1440) {
-        const diffHours = Math.round(diffMins / 60)
-        return diffHours + '시간 전'
-      } else {
-        const diffDays = Math.round(diffMins / 1440)
-        return diffDays + '일 전'
-      }
     },
     gowrite () {
       const boards = ['Board1', 'Board2', 'Board3', 'Board4']

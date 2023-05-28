@@ -28,7 +28,7 @@
     </div>
 </template>
 <script>
-import * as authApi from '@/api/auth'
+import { login } from '@/api/auth'
 import store from '@/store'
 export default {
   data () {
@@ -40,31 +40,25 @@ export default {
     }
   },
   methods: {
-    login () {
+    async login () {
       if (this.rememberMe) {
         localStorage.setItem('loginId', this.loginId)
       } else {
         localStorage.removeItem('loginId')
       }
-      authApi.login(this.loginId, this.password)
-        .then(response => {
-          alert('성공')
-          store.commit('doLogin', response.data)
-          console.log(localStorage.getItem('token'))
+      try {
+        const response = await login(this.loginId, this.password)
+
+        if (response) {
+          alert('로그인 되었습니다.')
+          await store.dispatch('doLogin', response.data)
           this.$router.push('/')
-        })
-        .catch(error => {
-          alert('에러')
-          console.log(error)
-          if (error.response) {
-            console.log(error.response.status)
-          } else if (error.request) {
-            console.log(error.request)
-          } else {
-            console.log(error.message)
-          }
-          location.reload()
-        })
+        } else {
+          alert('error')
+        }
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }

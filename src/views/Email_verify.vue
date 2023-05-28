@@ -46,7 +46,6 @@ export default {
           .then(response => {
             this.isCodeSent = true
             this.verifycode = response.data
-            console.log(this.verifycode)
           })
           .catch(err => {
             console.log(err)

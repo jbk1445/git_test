@@ -64,7 +64,6 @@ export default {
         this.department = response.data.department
         this.grade = response.data.gradle
         this.sex = response.data.sex
-        console.log(this.name, this.department, this.grade, this.sex)
       })
       .catch(error => {
         alert('error')

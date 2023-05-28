@@ -4,6 +4,7 @@
     <div class="boxmenu">
         <div class="box" @click=setInfoTrue><h3>계정정보</h3><p>개인 정보 확인 및 수정합니다.</p></div>
         <div class="box" @click=setPwTrue><h3>보안</h3><p>암호를 재설정합니다.</p></div>
+        <div class="box" @click="setmyTrue"><h3>나의 글</h3><p>내 게시글을 조회합니다.</p></div>
     </div>
     </div>
 </template>
@@ -28,6 +29,9 @@ export default {
     },
     setPwTrue () {
       this.$emit('change-section', 'Pw')
+    },
+    setmyTrue () {
+      this.$emit('change-section', 'Mywrite')
     }
   }
 }

@@ -46,32 +46,17 @@ export default {
     },
     loadPage () {
       const params = {
-        page: this.currentPage,
-        size: this.pageSize
+        page: Number(this.currentPage),
+        size: Number(this.pageSize)
       }
       const BoardName = 'tutoring'
-      https
-        .view(`board/${BoardName}`, params)
+      https.view(`/board/${BoardName}`, params)
         .then(response => {
           this.Boards = response.data
         })
         .catch(error => {
           alert(error)
         })
-    },
-    gettimedif (timestamp) {
-      const now = new Date().getTime()
-      const diffMs = now - timestamp
-      const diffMins = Math.round(diffMs / 1000 / 60)
-      if (diffMins < 60) {
-        return diffMins + '분 전'
-      } else if (diffMins < 1440) {
-        const diffHours = Math.round(diffMins / 60)
-        return diffHours + '시간 전'
-      } else {
-        const diffDays = Math.round(diffMins / 1440)
-        return diffDays + '일 전'
-      }
     },
     gowrite () {
       const boards = ['Board1', 'Board2', 'Board3', 'Board4']

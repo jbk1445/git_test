@@ -72,7 +72,7 @@
         <div class="content2">{{ content }}</div>
         <div class="menu">
           <button @click="Report = true">신고</button>
-          <button>매칭</button>
+          <button @click="match">매칭</button>
           <button v-if="owner" @click="del()">삭제</button>
         </div>
         <div class="userinfo2">
@@ -108,21 +108,7 @@ export default {
       owner: false
     }
   },
-  mounted () {
-    https.get('/profile')
-      .then(response => {
-        this.username = response.data.name
-      })
-      .catch(error => {
-        alert('현재 유저 정보를 불러올수 없습니다.')
-        console.log(error)
-      })
-    if (this.username === this.admin) {
-      this.owner = true
-    } else {
-      this.owner = false
-    }
-  },
+  mounted () {},
   created () {
     const BoardName = this.$route.params.BoardId
     const postId = this.$route.params.postId
@@ -137,6 +123,20 @@ export default {
       .catch((error) => {
         console.log(error)
       })
+    https.get('/profile')
+      .then(response => {
+        this.username = response.data.name
+        if (this.username === this.admin) {
+          this.owner = true
+        } else {
+          this.owner = false
+        }
+        console.log(response.data)
+      })
+      .catch(error => {
+        alert('현재 유저 정보를 불러올수 없습니다.')
+        console.log(error)
+      })
   },
   methods: {
     report () {
@@ -148,7 +148,7 @@ export default {
         }
       }
       const data = {
-        reportedPostId: this.$route.params.postId.toString(),
+        reportedPostId: this.$route.params.postId,
         content: this.checkvalue
       }
       https.post('/reports/boards', data)
@@ -170,6 +170,17 @@ export default {
         })
         .catch(error => {
           alert('삭제 실패했습니다.')
+          console.log(error)
+        })
+    },
+    match () {
+      const postId = this.$route.params.postId
+      https.post(`/match/${postId}`)
+        .then(response => {
+          alert('매칭 요청이 전송되었습니다.')
+        })
+        .catch(error => {
+          alert('매칭 요청이 정상적으로 전송되지 않았습니다.')
           console.log(error)
         })
     }

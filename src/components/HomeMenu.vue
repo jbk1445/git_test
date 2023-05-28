@@ -56,7 +56,7 @@
 
 <script>
 import store from '@/store/index'
-import http from '@/api/http.js'
+import * as https from '@/api/https'
 export default {
   data () {
     return {
@@ -72,8 +72,8 @@ export default {
     } else { this.isLoggedIn = false }
   },
   mounted () {
-    if (!this.$store.state.token) {
-      http.get('board/capstone')
+    if (this.$store.state.token) {
+      https.get('board/notice')
         .then(response => {
           if (response.data.length <= 3) {
             for (let i = 0; i < response.data.length; i++) {
@@ -101,22 +101,6 @@ export default {
       } else {
         this.$router.push('/')
       }
-    },
-    test () {
-      const headers = {
-        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiTmVpZ2hib3JBUEkiOiJST0xFX0FETUlOIiwiZXhwIjoxNjg1MTk4NjczfQ.YTOun2aFVi_MkHTKSohtLa1NoV0ggP3A1ajGGjlNuhnc8OPgeys0-xh1U3vNE-AcdyjUr-CqqNDkKscEANHpFw'
-      }
-      http.post('/board/club', {
-        title: 'title',
-        content: 'context'
-      }, headers)
-        .then(response => {
-          alert('성공')
-        })
-        .catch(error => {
-          console.log(error)
-          alert('실패')
-        })
     }
   },
   watch: {

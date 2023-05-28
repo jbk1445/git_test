@@ -3,8 +3,8 @@
         <h1>동아리 게시판</h1>
     </div>
     <div class="titles">
-        <div  v-for="Board in Boards" :key="Board.id" class="list">
-            <router-link :to="`/Board/club/view/${Board.id}`" class="article">
+        <div  v-for="Board in Boards" :key="Board.postId" class="list">
+            <router-link :to="`/Board/club/view/${Board.postId}`" class="article">
                 <h2 class="medium">{{ Board.title }}</h2>
                 <p class="small">{{ Board.content }}</p>
                 <time class="small">{{ Board.createdAt }}</time>

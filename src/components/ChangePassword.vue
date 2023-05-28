@@ -39,7 +39,7 @@ export default {
         newPassword: this.newPw,
         checkPassword: this.newPwcheck
       }
-      https.post('/edit', data)
+      https.post('/password_edit', data)
         .then(response => {
           alert('비밀번호 변경 완료')
           alert('다시 로그인해주세요')

@@ -3,6 +3,7 @@
     <div class="list2" @click="setMainTrue">계정 관리</div>
     <div class="list2" @click="setInfoTrue">☻계정 정보</div>
     <div class="list2" @click="setPwTrue">🔒보안</div>
+    <div class="list2" @click="setmyTrue">나의 게시글</div>
     <button @click="quit()">회원 탈퇴</button>
 </template>
 
@@ -19,6 +20,9 @@ export default {
     },
     setPwTrue () {
       this.$emit('change-section', 'Pw')
+    },
+    setmyTrue () {
+      this.$emit('change-section', 'Mywrite')
     },
     quit () {
       https.del('/my')

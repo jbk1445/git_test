@@ -1,5 +1,5 @@
 <template>
-    <div v-if="changepw" class="password-reset-container">
+    <div v-if="!changepw" class="password-reset-container">
         <div class="password-reset-form">
             <h2 class="form-title">비밀번호 변경</h2>
             <div class="form-group">
@@ -63,7 +63,6 @@ export default {
           .then(res => {
             this.isCodeSent = true
             this.verifycode = res.data
-            console.log(this.verifycode)
           })
           .catch(err => {
             console.log(err)
@@ -71,11 +70,9 @@ export default {
       }
     },
     Verify () {
-      console.log(this.verifycode, this.code)
       if (this.code === this.verifycode) {
         alert('인증되었습니다.')
-        this.changwpw = true
-        location.reload()
+        this.changepw = true
       } else {
         alert('인증에 실패했습니다.')
       }
@@ -89,7 +86,7 @@ export default {
       https.post('/password_change', data)
         .then(response => {
           alert('비밀번호 변경 완료')
-          this.changePw = false
+          this.changepw = false
           this.$router.push('/LoginCheck')
         })
         .catch(error => {

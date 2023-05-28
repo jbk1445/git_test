@@ -150,7 +150,7 @@ export default defineComponent({
       this.$router.push('/Email_verify')
     },
     register () {
-      const birthdate = `${this.year}${this.month}${this.day}`
+      const birthdate = `${this.year}-${this.month}-${this.day}`
       const data = {
         loginId: this.email,
         password: this.password,

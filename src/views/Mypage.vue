@@ -7,6 +7,7 @@
         <MypageMain @change-section="changeSection" v-if="Main"/>
         <ChangeInfo v-if="Info"/>
         <ChangePw v-if="Pw"/>
+        <Mywrite v-if="Mywrite"/>
       </section>
     </div>
   </template>
@@ -16,6 +17,7 @@ import MypageMain from '../components/MypageMain.vue'
 import MypageMenu from '../components/MypageMenu.vue'
 import ChangeInfo from '../components/ChangeInfo.vue'
 import ChangePw from '../components/ChangePassword.vue'
+import Mywrite from '../components/MywriteView'
 
 export default {
   name: 'BoardMypage',
@@ -23,13 +25,15 @@ export default {
     ChangeInfo,
     ChangePw,
     MypageMenu,
-    MypageMain
+    MypageMain,
+    Mywrite
   },
   data () {
     return {
       Main: true,
       Info: false,
-      PW: false
+      PW: false,
+      Mywrite: false
     }
   },
   methods: {
@@ -37,6 +41,7 @@ export default {
       this.Main = section === 'Main'
       this.Info = section === 'Info'
       this.Pw = section === 'Pw'
+      this.Mywrite = section === 'Mywrite'
     }
   }
 }

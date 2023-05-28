@@ -10,22 +10,30 @@ const store = createStore({
     }
   },
   mutations: {
-    doLogin (state, userdata) {
-      store.commit('setToken', userdata.accessToken)
-      state.refreshToken = userdata.refreshToken
-      localStorage.setItem('refreshtoken', state.refreshToken)
-      state.expdate = userdata.accessTokenExpiresln
+    clearstate (state) {
+      state.token = null
+      state.bearer = null
+      state.refreshToken = null
+      state.expdate = null
     },
     setToken (state, token) {
       state.token = token
       localStorage.setItem('token', token)
     },
     logout (state) {
-      state.token = null
-      localStorage.removeItem('token')
+      store.commit('clearstate')
+      localStorage.clear()
     }
   },
-  actions: {},
+  actions: {
+    doLogin (state, userdata) {
+      store.commit('setToken', userdata.accessToken)
+      state.refreshToken = userdata.refreshToken
+      localStorage.setItem('refreshtoken', state.refreshToken)
+      state.expdate = userdata.accessTokenExpiresIn
+      localStorage.setItem('expdate', state.expdate)
+    }
+  },
   getters: {
     getToken (state) {
       return state.token
