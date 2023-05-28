@@ -3,7 +3,7 @@ import router from '@/router'
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'http://13.124.173.243:8080'
+  baseURL: '/api'
 })
 
 instance.interceptors.response.use(async (config) => {
