@@ -9,8 +9,7 @@ module.exports = defineConfig({
         ws: false,
         pathRewrite: {
           '^/api': '/'
-        },
-        method: 'POST'
+        }
       }
     }
   }
