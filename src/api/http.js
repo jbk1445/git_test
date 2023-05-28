@@ -1,5 +1,4 @@
 import store from '@/store'
-import router from '@/router'
 import axios from 'axios'
 
 const instance = axios.create({
@@ -32,13 +31,6 @@ instance.interceptors.response.use(async (config) => {
         alert('예기치 못한 이유로 토큰 재발행에 실패했습니다.')
         console.log(error)
       }
-    }
-  } else {
-    const allowedPaths = ['/LoginCheck', '/', '/Register', '/Email-verify', '/password_find']
-    const currentPath = router.currentRoute.value.path
-    if (!allowedPaths.includes(currentPath)) {
-      // 현재 경로가 허용된 경로가 아닌 경우
-      router.push('/main') // 메인 페이지로 리다이렉트
     }
   }
   return config
