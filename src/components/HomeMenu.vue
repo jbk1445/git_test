@@ -1,6 +1,8 @@
 <template>
     <div v-if="this.$store.state.token" class="login">
         <a href="/" class="logo"><img src="../assets/Logo2.png" alt="MATCHED" width="100" height="100"></a>
+        <div class="myname">{{ name }}님 안녕하세요
+        </div>
         <a href="/users" class="button-login">내정보</a>
         <button @click="logout">로그아웃</button>
         <hr>
@@ -63,13 +65,21 @@ export default {
       isLoggedIn: false,
       activeTab: '공지',
       room: { name1: '', name2: '', name3: '', name4: '' },
-      Notice: { name1: '', name2: '', name3: '', name4: '' }
+      Notice: { name1: '', name2: '', name3: '', name4: '' },
+      name: ''
     }
   },
   created () {
     if (localStorage.getItem('isLoggedIn') === 'true') {
       this.isLoggedIn = true
     } else { this.isLoggedIn = false }
+    https.get('/profile')
+      .then(response => {
+        this.name = response.data.name
+      })
+      .catch(error => {
+        console.log(error)
+      })
   },
   mounted () {
     if (this.$store.state.token) {
@@ -115,6 +125,10 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Tangerine");
+
+.myname {
+  height: 20%;
+}
 .chat {
     display: block; margin-bottom: 5px; height: 40px; line-height: 40px; box-sizing: border-box;
     border-radius: 40px; text-align: center; text-decoration: none;

@@ -77,7 +77,7 @@
         </div>
         <div class="userinfo2">
           <div class="box2">
-            <div class="avatar">사진</div>
+            <div class="avatar"><img src="@/assets/edit.png" class="img"></div>
             <div class="userinfo3">
               <p>이름  {{ admin }}</p>
               <p>학과  {{ department }}</p>
@@ -174,21 +174,30 @@ export default {
         })
     },
     match () {
-      const postId = this.$route.params.postId
-      https.post(`/match/${postId}`)
-        .then(response => {
-          alert('매칭 요청이 전송되었습니다.')
-        })
-        .catch(error => {
-          alert('매칭 요청이 정상적으로 전송되지 않았습니다.')
-          console.log(error)
-        })
+      if (this.username === this.admin) {
+        alert('본인 글에 매칭 요청을 할수 없습니다.')
+      } else {
+        const postId = this.$route.params.postId
+        https.post(`/match/${postId}`)
+          .then(response => {
+            alert('매칭 요청이 전송되었습니다.')
+          })
+          .catch(error => {
+            alert('매칭 요청이 정상적으로 전송되지 않았습니다.')
+            console.log(error)
+          })
+      }
     }
   }
 }
 </script>
 
-  <style scoped>
+<style scoped>
+
+.img {
+  height: 132px;
+  width: 132px;
+}
 /* 전체 배경색 설정 */
 body {
   background-color: #f2f2f2;
@@ -277,8 +286,8 @@ button:last-of-type {
 .avatar {
   width: 40%;
   height: 100%;
-  background-color: #cccccc;
   border-radius: 10px 0 0 10px;
+  align-items: center;
 }
 
 /* 유저 정보 상자 내부 */

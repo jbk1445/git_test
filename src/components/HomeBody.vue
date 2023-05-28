@@ -2,42 +2,54 @@
 <div class="card-container">
     <div class="card">
         <div class="board">
-            <h3><a href="/Board/tutoring">튜터링 게시판</a></h3>
-            <div  v-for="Board in board1" :key="Board.postId" class="list">
-              <router-link :to="`/Board/Notice/view/${Board.postId}`" class="article">
-                <h2 class="medium">{{ Board.title }}</h2>
-              </router-link>
-            </div>
+          <div class="title2">
+              <h3><a href="/Board/tutoring">튜터링 게시판</a></h3>
+              <div  v-for="Board in board1" :key="Board.postId" class="list">
+                <a class="article" :href="`/Board/Notice/view/${Board.postId}`">
+                  <h2 class="medium">{{ Board.title }}</h2>
+                  <span class="date">{{ getFormatedDate(Board.createdAt) }}</span>
+                </a>
+              </div>
+          </div>
         </div>
     </div>
     <div class="card">
         <div class="board">
+          <div class="title2">
             <h3><a href="/Board/club">동아리 게시판</a></h3>
             <div  v-for="Board in board2" :key="Board.postId" class="list">
               <router-link :to="`/Board/Notice/view/${Board.postId}`" class="article">
                 <h2 class="medium">{{ Board.title }}</h2>
+                <span class="date">{{ getFormatedDate(Board.createdAt) }}</span>
               </router-link>
             </div>
+          </div>
         </div>
     </div>
     <div class="card">
         <div class="board">
+          <div class="title2">
             <h3><a href="/Board/capstone">캡스톤 게시판</a></h3>
             <div  v-for="Board in board3" :key="Board.postId" class="list">
               <router-link :to="`/Board/Notice/view/${Board.postId}`" class="article">
                 <h2 class="medium">{{ Board.title }}</h2>
+                <span class="date">{{ getFormatedDate(Board.createdAt) }}</span>
               </router-link>
             </div>
+          </div>
         </div>
     </div>
     <div class="card">
         <div class="board">
+          <div class="title2">
           <h3><a href="/Board/poom">품앗이 게시판</a></h3>
           <div  v-for="Board in board4" :key="Board.postId" class="list">
               <router-link :to="`/Board/Notice/view/${Board.postId}`" class="article">
                 <h2 class="medium">{{ Board.title }}</h2>
+                <span class="date">{{ getFormatedDate(Board.createdAt) }}</span>
               </router-link>
             </div>
+          </div>
         </div>
     </div>
 </div>
@@ -74,6 +86,24 @@ export default {
         alert(error)
         console.log(error)
       })
+  },
+  methods: {
+    getFormatedDate (createdAt) {
+      const currentTime = new Date()
+      const createdAtTime = new Date(createdAt)
+      const diffInMinutes = Math.floor((currentTime - createdAtTime) / (1000 * 60))
+
+      if (diffInMinutes < 60) {
+        return `${diffInMinutes} 분 전`
+      } else {
+        const month = (createdAtTime.getMonth() + 1).toString().padStart(2, '0')
+        const day = createdAtTime.getDate().toString().padStart(2, '0')
+        const hours = createdAtTime.getHours().toString().padStart(2, '0')
+        const minutes = createdAtTime.getMinutes().toString().padStart(2, '0')
+
+        return `${month}/${day} ${hours}:${minutes}`
+      }
+    }
   }
 }
 </script>
@@ -98,6 +128,7 @@ export default {
 .board {
   padding: 20px;
   height: 300px;
+  border: 1px solid #ccc;
 }
 
 .board h3 {
@@ -127,4 +158,37 @@ export default {
   color: #ff6600;
 }
 
+.medium {
+  border-bottom: 1px solid #ccc;
+  margin-left: 5px;
+}
+
+.title2 {
+  height: 100%;
+  border: 1px solid #ccc;
+}
+
+a {
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: 'font';
+  src: url('@/assets/fonts/malgun.ttf')
+}
+
+div {
+  font-family: 'font';
+  color: #737373;
+  text-decoration: none;
+}
+
+.article {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 </style>
