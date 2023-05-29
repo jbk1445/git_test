@@ -10,9 +10,16 @@
                 <time class="small">{{ $getFormatedDate(Board.createdAt) }}</time>
             </router-link>
         </div>
-        <div class="bottom">
-            <button class="next" @click="gowrite()">글쓰기</button>
-        </div>
+    <div class="float-center">
+      <div class="down-area">
+        <ul>
+          <li v-for="page in pages" :key="page" @click="reloadpage(page)" :class="{ 'selected': currentPage === page}">
+          {{ page }}
+        </li>
+        </ul>
+        <button class="next" @click="gowrite()">글쓰기</button>
+      </div>
+    </div>
     </div>
     </template>
 
@@ -29,7 +36,8 @@ export default {
       Board1: false,
       Board2: false,
       Board3: false,
-      Board4: false
+      Board4: false,
+      pages: [1, 2, 3, 4, 5, 6, 7, 8]
     }
   },
   mounted () {
@@ -72,6 +80,10 @@ export default {
       this.currentPage = 1
       this.showBeforeButton = false
       this.loadPage()
+    },
+    reloadpage (page) {
+      this.currentPage = page
+      this.loadPage()
     }
   }
 }
@@ -95,7 +107,7 @@ export default {
         left: 20%; top: 10%;
         display: block;
         border: 1px solid gray;
-        width: 570px;
+        width: 570px; font-size: medium;
         margin: 10px; padding: 15px;
     }
     .titles {
@@ -142,4 +154,46 @@ export default {
         color: #a6a6a6;
         font-size: 12px;
     }
+    .float-center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  left: 30%;
+}
+
+li {
+  border-left: 1px solid #ccc;
+  text-align: center;
+  width: 20px;
+  cursor: pointer;
+}
+
+button {
+  height: 30px;
+  width: 30%;
+  margin-left: auto;
+}
+
+.down-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.selected {
+  background-color: yellow;
+}
     </style>

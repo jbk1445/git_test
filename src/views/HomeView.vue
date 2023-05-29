@@ -1,6 +1,7 @@
 <template>
     <section>
       <HomeBody v-if="this.$store.state.token"/>
+      <HomeBody v-else/>
     </section>
     <aside>
       <HomeMenu/>
