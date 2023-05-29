@@ -49,6 +49,7 @@ export default {
         .catch(error => {
           alert('비밀번호 변경에 실패했습니다.')
           console.log(error)
+          this.$router.push('/LoginCheck')
         })
     }
   },

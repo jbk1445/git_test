@@ -7,7 +7,7 @@
               <div  v-for="Board in board1" :key="Board.postId" class="list">
                 <a class="article" :href="`/Board/Notice/view/${Board.postId}`">
                   <h2 class="medium">{{ Board.title }}</h2>
-                  <span class="date">{{ getFormatedDate(Board.createdAt) }}</span>
+                  <span class="date">{{ $getFormatedDate(Board.createdAt) }}</span>
                 </a>
               </div>
           </div>
@@ -20,7 +20,7 @@
             <div  v-for="Board in board2" :key="Board.postId" class="list">
               <router-link :to="`/Board/Notice/view/${Board.postId}`" class="article">
                 <h2 class="medium">{{ Board.title }}</h2>
-                <span class="date">{{ getFormatedDate(Board.createdAt) }}</span>
+                <span class="date">{{ $getFormatedDate(Board.createdAt) }}</span>
               </router-link>
             </div>
           </div>
@@ -33,7 +33,7 @@
             <div  v-for="Board in board3" :key="Board.postId" class="list">
               <router-link :to="`/Board/Notice/view/${Board.postId}`" class="article">
                 <h2 class="medium">{{ Board.title }}</h2>
-                <span class="date">{{ getFormatedDate(Board.createdAt) }}</span>
+                <span class="date">{{ $getFormatedDate(Board.createdAt) }}</span>
               </router-link>
             </div>
           </div>
@@ -46,7 +46,7 @@
           <div  v-for="Board in board4" :key="Board.postId" class="list">
               <router-link :to="`/Board/Notice/view/${Board.postId}`" class="article">
                 <h2 class="medium">{{ Board.title }}</h2>
-                <span class="date">{{ getFormatedDate(Board.createdAt) }}</span>
+                <span class="date">{{ $getFormatedDate(Board.createdAt) }}</span>
               </router-link>
             </div>
           </div>
@@ -86,24 +86,6 @@ export default {
         alert(error)
         console.log(error)
       })
-  },
-  methods: {
-    getFormatedDate (createdAt) {
-      const currentTime = new Date()
-      const createdAtTime = new Date(createdAt)
-      const diffInMinutes = Math.floor((currentTime - createdAtTime) / (1000 * 60))
-
-      if (diffInMinutes < 60) {
-        return `${diffInMinutes} 분 전`
-      } else {
-        const month = (createdAtTime.getMonth() + 1).toString().padStart(2, '0')
-        const day = createdAtTime.getDate().toString().padStart(2, '0')
-        const hours = createdAtTime.getHours().toString().padStart(2, '0')
-        const minutes = createdAtTime.getMinutes().toString().padStart(2, '0')
-
-        return `${month}/${day} ${hours}:${minutes}`
-      }
-    }
   }
 }
 </script>
@@ -187,7 +169,7 @@ div {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  height: 40px;
   margin-left: 10px;
   margin-right: 10px;
 }

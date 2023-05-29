@@ -4,7 +4,9 @@
     <div class="list2" @click="setInfoTrue">☻계정 정보</div>
     <div class="list2" @click="setPwTrue">🔒보안</div>
     <div class="list2" @click="setmyTrue">나의 게시글</div>
-    <button @click="quit()">회원 탈퇴</button>
+    <div class="button-container">
+      <button @click="confirmquit()">회원 탈퇴</button>
+    </div>
 </template>
 
 <script>
@@ -13,16 +15,16 @@ import * as https from '@/api/https'
 export default {
   methods: {
     setMainTrue () {
-      this.$emit('change-section', 'Main')
+      this.$emit('change-section-main')
     },
     setInfoTrue () {
-      this.$emit('change-section', 'Info')
+      this.$emit('changeSection-info')
     },
     setPwTrue () {
-      this.$emit('change-section', 'Pw')
+      this.$emit('change-section-pw')
     },
     setmyTrue () {
-      this.$emit('change-section', 'Mywrite')
+      this.$emit('change-section-mywrite')
     },
     quit () {
       https.del('/my')
@@ -35,6 +37,13 @@ export default {
           alert('회원탈퇴 실패했습니다.')
           console.log(error)
         })
+    },
+    confirmquit () {
+      if (window.confirm('정말 탈퇴하시겠습니까?')) {
+        this.quit()
+      } else {
+        location.reload()
+      }
     }
   }
 }
@@ -42,10 +51,33 @@ export default {
 
 <style scoped>
 .list {
-    height: 20%;
+  display: flex;
+  text-align: center;
+  cursor: pointer;
+  justify-content: center;
+  height: 100px;
 }
 .list2 {
-    height: 10%;
-    text-align: center;
+  display: flex;
+  height: 60px;
+  text-align: center;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+.list2:hover {
+  background-color: lightgray;
+}
+.container {
+  display: inline;
+}
+button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+.button-container {
+  position: relative;
+  top: 45%;
 }
 </style>

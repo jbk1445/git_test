@@ -7,7 +7,7 @@
             <router-link :to="`/Board/club/view/${Board.postId}`" class="article">
                 <h2 class="medium">{{ Board.title }}</h2>
                 <p class="small">{{ Board.content }}</p>
-                <time class="small">{{ Board.createdAt }}</time>
+                <time class="small">{{ $getFormatedDate(Board.createdAt) }}</time>
             </router-link>
         </div>
         <div class="bottom">

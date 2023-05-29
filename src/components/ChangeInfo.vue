@@ -5,12 +5,12 @@
             <button @click="Ismodal = false">닫기</button></h4>
             <p>이름</p>
             <p class="change" v-if="!ChangeName">{{ name }} <button @click="ChangeName = true">변경</button></p>
-            <p v-else class="change"><input key="name" v-model="name"><button @click="inputchange()">변경</button></p>
+            <p v-else class="change"><input type="text" key="name" v-model="name"><button @click="inputchange()">변경</button></p>
             <p>학과</p>
             <p class="change" v-if="!ChangeDep">{{ department }} <button @click="ChangeDep = true">변경</button></p>
-            <p class="change" v-else><input type="date" key="department" v-model="department"><button @click="inputchange()">변경</button></p>
+            <p v-else class="change"><input type="text" key="department" v-model="department"><button @click="inputchange()">변경</button></p>
             <p>학년</p>
-            <p class="change" v-if="!ChangeGrade">{{ grade }} <button @click="ChangeGrade = true">변경</button></p>
+            <p class="change" v-if="!ChangeGrade">{{ grade }}학년 <button @click="ChangeGrade = true">변경</button></p>
             <p class="change" v-else><select name="grade" v-model="grade">
                 <option value=1>1학년</option>
                 <option value=2>2학년</option>
@@ -32,10 +32,10 @@
             <p>사용자 이름 {{ name }}</p>
         </div>
         <div class="container2">
-            <div style="display:flex;"><h1 style="width: 70%;">개인 정보</h1><button @click="Ismodal = true">편집</button></div>
+            <div style="display:flex;"><h1 style="width: 70%;">개인 정보</h1><button @click="Ismodal = true">수정</button></div>
             <div class="list">이름 {{ name }}</div>
             <div class="list">학과 {{ department }}</div>
-            <div class="list">학년 {{ grade }}</div>
+            <div class="list">학년 {{ grade }}학년</div>
             <div class="list">성별 {{ sex }}</div>
         </div>
         </div>
@@ -80,6 +80,7 @@ export default {
       })
         .then(response => {
           alert('변경되었습니다.')
+          location.reload()
         })
         .catch(error => {
           alert('에러')

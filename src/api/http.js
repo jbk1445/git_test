@@ -2,7 +2,7 @@ import store from '@/store'
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: '/api'
+  baseURL: 'http://a.matchlink.shop:8080/'
 })
 
 instance.interceptors.response.use(async (config) => {
@@ -11,7 +11,6 @@ instance.interceptors.response.use(async (config) => {
   if (token) {
     const now = new Date().getTime()
     const expdate = localStorage.getItem('expdate')
-    console.log(now, expdate)
     if (now > expdate) {
       const headers = {
         Authorization: `Bearer ${token}`
@@ -26,7 +25,6 @@ instance.interceptors.response.use(async (config) => {
         const response = await instance.post('/reissue', data, { headers })
         alert('토큰이 재발행되었습니다.')
         store.commit('doLogin', response.data)
-        console.log(response.data)
       } catch (error) {
         alert('예기치 못한 이유로 토큰 재발행에 실패했습니다.')
         console.log(error)

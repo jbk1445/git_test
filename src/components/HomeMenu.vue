@@ -52,7 +52,6 @@
         <p class="find">
             <a href="/Password_find"></a>
         </p>
-        <button @click="test">test button</button>
     </div>
 </template>
 

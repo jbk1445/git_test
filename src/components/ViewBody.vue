@@ -7,7 +7,7 @@
         <router-link :to="`/Board/tutoring/view/${Board.postId}`" class="article">
             <h2 class="medium">{{ Board.title }}</h2>
             <p class="small">{{ Board.content }}</p>
-            <time class="small">{{ Board.createdAt }}</time>
+            <time class="small">{{ $getFormatedDate(Board.createdAt) }}</time>
         </router-link>
     </div>
         <button class="next" @click="gowrite()">글쓰기</button>
@@ -70,7 +70,6 @@ export default {
       this.showBeforeButton = false
       this.loadPage()
     }
-
   }
 }
 </script>

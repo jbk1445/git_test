@@ -1,13 +1,10 @@
 <template>
     <div class="container">
       <aside class="mypage">
-        <MypageMenu @change-section="changeSection"/>
+        <MypageMenu @change-section-main="changeSection('Main')" @change-section-info="changeSection('Info')" @change-section-pw="changeSection('Pw')" @change-section-mywrite="changeSection('Mywrite')"/>
       </aside>
       <section>
-        <MypageMain @change-section="changeSection" v-if="Main"/>
-        <ChangeInfo v-if="Info"/>
-        <ChangePw v-if="Pw"/>
-        <Mywrite v-if="Mywrite"/>
+        <component :is="currentSectionComponent" @change-section="changeSection"/>
       </section>
     </div>
   </template>
@@ -17,7 +14,7 @@ import MypageMain from '../components/MypageMain.vue'
 import MypageMenu from '../components/MypageMenu.vue'
 import ChangeInfo from '../components/ChangeInfo.vue'
 import ChangePw from '../components/ChangePassword.vue'
-import Mywrite from '../components/MywriteView'
+import Mywrite from '@/components/MycontentView.vue'
 
 export default {
   name: 'BoardMypage',
@@ -30,18 +27,26 @@ export default {
   },
   data () {
     return {
-      Main: true,
-      Info: false,
-      PW: false,
-      Mywrite: false
+      currentSection: 'Main'
+    }
+  },
+  computed: {
+    currentSectionComponent () {
+      if (this.currentSection === 'Main') {
+        return MypageMain
+      } else if (this.currentSection === 'Info') {
+        return ChangeInfo
+      } else if (this.currentSection === 'Pw') {
+        return ChangePw
+      } else if (this.currentSection === 'Mywrite') {
+        return Mywrite
+      }
+      return null
     }
   },
   methods: {
     changeSection (section) {
-      this.Main = section === 'Main'
-      this.Info = section === 'Info'
-      this.Pw = section === 'Pw'
-      this.Mywrite = section === 'Mywrite'
+      this.currentSection = section
     }
   }
 }

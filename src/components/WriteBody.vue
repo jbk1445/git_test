@@ -97,33 +97,35 @@ export default {
       }
       const url = `board/${BoardName}`
       let url2 = ''
-      if (this.Board1 === true) {
-        url2 = '/Board/tutoring'
-        data.limitPeople = this.selectedcategory2
+      if (window.confirm('작성하시겠습니까? ')) {
+        if (this.Board1 === true) {
+          url2 = '/Board/tutoring'
+          data.limitPeople = this.selectedcategory2
+        }
+        if (this.Board2 === true) {
+          url2 = '/Board/club'
+          data.limitPeople = this.club_count
+        }
+        if (this.Board3 === true) {
+          url2 = '/Board/capstone'
+          data.limitPeople = 3
+        }
+        if (this.Board4 === true) {
+          url2 = '/Board/poom'
+          data.limitPeople = 4
+        }
+        https.post(url, data)
+          .then(response => {
+            alert('작성되었습니다.')
+            this.$router.push(url2)
+          })
+          .catch(error => {
+            console.error(`Failed to create a new post. Error message: ${error.message}`)
+            console.error(error)
+          })
+      } else {
+        location.reload()
       }
-      if (this.Board2 === true) {
-        url2 = '/Board/club'
-        data.limitPeople = this.club_count
-      }
-      if (this.Board3 === true) {
-        url2 = '/Board/capstone'
-        data.limitPeople = 3
-      }
-      if (this.Board4 === true) {
-        url2 = '/Board/poom'
-        data.limitPeople = 4
-      }
-      console.log(data)
-      console.log(url)
-      https.post(url, data)
-        .then(response => {
-          alert('작성되었습니다.')
-          this.$router.push(url2)
-        })
-        .catch(error => {
-          console.error(`Failed to create a new post. Error message: ${error.message}`)
-          console.error(error)
-        })
     }
   }
 }
