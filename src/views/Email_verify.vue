@@ -40,7 +40,7 @@ export default {
       } else {
         http.get('/email', {
           params: {
-            email: this.email
+            userEmail: this.email
           }
         })
           .then(response => {

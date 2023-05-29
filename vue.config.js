@@ -4,7 +4,7 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       '^/api': {
-        target: 'http://a.matchlink.shop:8080/',
+        target: 'https://test.matchlink.shop/',
         changeOrigin: true,
         ws: false,
         pathRewrite: {

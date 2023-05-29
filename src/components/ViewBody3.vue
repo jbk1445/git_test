@@ -194,6 +194,6 @@ button {
 }
 
 .selected {
-  background-color: yellow;
+  background-color: #F2CB6C;
 }
     </style>

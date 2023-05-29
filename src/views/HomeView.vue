@@ -1,7 +1,7 @@
 <template>
     <section>
       <HomeBody v-if="this.$store.state.token"/>
-      <HomeBody v-else/>
+      <HomeBody2 v-else/>
     </section>
     <aside>
       <HomeMenu/>
@@ -11,6 +11,7 @@
 <script>
 import HomeMenu from '../components/HomeMenu.vue'
 import HomeBody from '../components/HomeBody.vue'
+import HomeBody2 from '@/components/HomeBody2.vue'
 export default {
   data () {
     return {
@@ -33,7 +34,8 @@ export default {
   name: 'HomeView',
   components: {
     HomeMenu,
-    HomeBody
+    HomeBody,
+    HomeBody2
   }
 }
 </script>

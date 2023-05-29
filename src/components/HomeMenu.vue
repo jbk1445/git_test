@@ -69,16 +69,18 @@ export default {
     }
   },
   created () {
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-      this.isLoggedIn = true
-    } else { this.isLoggedIn = false }
-    https.get('/profile')
-      .then(response => {
-        this.name = response.data.name
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    if (this.$store.state.token) {
+      if (localStorage.getItem('isLoggedIn') === 'true') {
+        this.isLoggedIn = true
+      } else { this.isLoggedIn = false }
+      https.get('/profile')
+        .then(response => {
+          this.name = response.data.name
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
   },
   mounted () {
     if (this.$store.state.token) {
