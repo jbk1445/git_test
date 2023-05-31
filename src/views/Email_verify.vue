@@ -32,17 +32,16 @@ export default {
   },
   methods: {
     sendCode () {
+      const data = {
+        email: this.email
+      }
       const emailRegex = /\b[A-Z0-9._%+-]+@mju\.ac\.kr\b/i
       if (!this.email) {
         alert('이메일을 입력하세요')
       } else if (!emailRegex.test(this.email)) {
         alert('올바른 이메일 주소를 입력하세요. 현재 @mju.ac.kr로만 가입 가능합니다.')
       } else {
-        http.get('/email', {
-          params: {
-            userEmail: this.email
-          }
-        })
+        http.post('/email', data)
           .then(response => {
             this.isCodeSent = true
             this.verifycode = response.data

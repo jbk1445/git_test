@@ -19,7 +19,6 @@
     <div class="black-bg" v-else>
       <div class="white-bg">
         <div class="title">변경할 비밀번호를 입력하세요</div>
-        <div class="title">현재 비밀번호<input class="pw" type="password" v-model="password"></div>
         <div class="title">비밀번호<input class="pw" type="password" v-model="newPw"></div>
         <div class="title">비밀번호 확인<input class="pw" type="password" v-model="newPwcheck"></div>
         <label for=""><div v-if="!passwordMatch">비밀번호가 일치하지 않습니다.</div></label>
@@ -33,7 +32,6 @@
 
 <script>
 import http from '@/api/http'
-import * as https from '@/api/https'
 export default {
   data () {
     return {
@@ -49,17 +47,16 @@ export default {
   },
   methods: {
     sendCode () {
+      const data = {
+        email: this.email
+      }
       const emailRegex = /\b[A-Z0-9._%+-]+@mju\.ac\.kr\b/i
       if (!this.email) {
         alert('이메일을 입력하세요')
       } else if (!emailRegex.test(this.email)) {
         alert('올바른 이메일 주소를 입력하세요. 현재 @mju.ac.kr로만 가입 가능합니다.')
       } else {
-        http.get('/email', {
-          params: {
-            email: this.email
-          }
-        })
+        http.post('/email', data)
           .then(res => {
             this.isCodeSent = true
             this.verifycode = res.data
@@ -83,7 +80,7 @@ export default {
         newPassword: this.newPw,
         checkPassword: this.newPwcheck
       }
-      https.post('/password_change', data)
+      http.post('/password_change', data)
         .then(response => {
           alert('비밀번호 변경 완료')
           this.changepw = false

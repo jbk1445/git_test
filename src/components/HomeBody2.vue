@@ -22,7 +22,8 @@
     flex-direction: column;
 }
 .head-view {
-    font-size: 28px;
+    font-size: 35px;
     color: #008A71;
+    margin-bottom: 10px;
 }
 </style>

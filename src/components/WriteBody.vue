@@ -6,20 +6,9 @@
     <h1 v-if="Board4">품앗이 게시판</h1>
 </div>
 <div class="titles">
-    <select name="category" class="option" v-model="selectedcategory" v-if="Board1">
-        <option value="1">튜터</option>
-        <option value="2">튜티</option>
-    </select>
-    <select name="category2" class="option" v-model="selectedcategory2" :disabled="isDisabled" v-if="Board1">
-        <option v-for="option in category2Options"
-        :key="option.value"
-        :value="option.value"
-        :disabled="option.disabled">
-        {{ option.label }}</option>
-    </select>
-    <label v-if="Board2">필요인원 =
-    <select name="club_count" class="option" v-model="club_count" v-if="Board2">
-        <option v-for="n in 7" :key='n' :value="n">{{ n }}명</option>
+    <label>필요인원 =
+    <select name="count" class="option" v-model="count">
+      <option v-for="n in 10" :key='n' :value="n">{{ n }}명</option>
     </select></label>
     <div class="inputbox">
         <input type="write_title" v-model="title" placeholder="제목을 입력하세요">
@@ -39,9 +28,7 @@ export default {
   data () {
     return {
       username: 'jkyu1445',
-      selectedcategory: '',
-      selectedcategory2: '1',
-      category2Options: [],
+      count: '',
       content: '',
       Board1: false,
       Board2: false,
@@ -93,18 +80,16 @@ export default {
         boardName: this.BoardName,
         title: this.title,
         content: this.content,
-        limitPeople: ''
+        limitPeople: this.count
       }
       const url = `board/${BoardName}`
       let url2 = ''
       if (window.confirm('작성하시겠습니까? ')) {
         if (this.Board1 === true) {
           url2 = '/Board/tutoring'
-          data.limitPeople = this.selectedcategory2
         }
         if (this.Board2 === true) {
           url2 = '/Board/club'
-          data.limitPeople = this.club_count
         }
         if (this.Board3 === true) {
           url2 = '/Board/capstone'
@@ -186,7 +171,7 @@ export default {
 .title {
     position: relative;
     left: 20%; top: 10%;
-    display: block;
+    display: block; font-size: medium;
     border: 1px solid gray;
     width: 570px;
     margin: 10px; padding: 15px;

@@ -2,7 +2,7 @@ import store from '@/store'
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'https://test.matchlink.shop'
+  baseURL: 'https://test.matchlink.shop/'
 })
 
 instance.interceptors.response.use(async (config) => {

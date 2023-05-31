@@ -76,8 +76,8 @@
                   <div class="inputbox">
                     <select v-model="sex" required class="grade">
                       <option disabled value="">please select one</option>
-                      <option>남성</option>
-                      <option>여성</option>
+                      <option>남</option>
+                      <option>여</option>
                     </select>
                   </div>
                 </td>

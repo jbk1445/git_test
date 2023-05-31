@@ -20,8 +20,8 @@
             <p>성별</p>
             <p class="change" v-if="!ChangeSex">{{ sex }} <button @click="ChangeSex = true">변경</button></p>
             <p class="change" v-else><select name="sex" v-model="sex">
-                <option value="남성">남성</option>
-                <option value="여성">여성</option>
+                <option value="남">남</option>
+                <option value="여">여</option>
             </select><button @click="inputchange()">변경</button></p>
         </div>
     </div>

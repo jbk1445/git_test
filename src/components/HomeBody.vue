@@ -143,6 +143,10 @@ export default {
 .medium {
   border-bottom: 1px solid #ccc;
   margin-left: 5px;
+  white-space: nowrap; /* 한 줄에 모든 텍스트를 표시합니다 */
+  overflow: hidden; /* 넘치는 텍스트를 감춥니다 */
+  text-overflow: ellipsis; /* 넘치는 텍스트를 "..."으로 표시합니다 */
+  max-width: 300px; /* 최대 텍스트 너비를 지정합니다 */
 }
 
 .title2 {

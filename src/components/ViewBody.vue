@@ -44,16 +44,6 @@ export default {
     this.loadPage()
   },
   methods: {
-    loadNextPage () {
-      this.currentPage++
-      this.loadPage()
-      this.showBeforeButton = true
-    },
-    loadPrePage () {
-      this.currentPage--
-      this.loadPage()
-      if (this.currentPage === 1) this.showBeforeButton = false
-    },
     loadPage () {
       const params = {
         page: Number(this.currentPage),

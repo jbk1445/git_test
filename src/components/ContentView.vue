@@ -183,7 +183,11 @@ export default {
             alert('매칭 요청이 전송되었습니다.')
           })
           .catch(error => {
-            alert('매칭 요청이 정상적으로 전송되지 않았습니다.')
+            if (error.response.status === 409) {
+              alert('이미 매칭전송을 한 글입니다.')
+            } else {
+              alert('매칭 요청이 정상적으로 전송되지 않았습니다.')
+            }
             console.log(error)
           })
       }

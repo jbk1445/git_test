@@ -63,8 +63,10 @@ export default {
 
 <style scoped>
     .menu {
-        height: 100vh;
-        margin: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
     }
     .pw {
         width: 100%;

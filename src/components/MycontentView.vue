@@ -18,18 +18,18 @@
           </td>
         </tr>
         <tr v-for="Board in Boards" :key="Board.postId" style="line-height: 10px;">
-          <td>{{ Board.title }}</td>
-          <td>{{ Board.content }}</td>
-          <td>{{ getFormatedDate(Board.createdAt) }}</td>
+          <td class="td">{{ Board.title }}</td>
+          <td class="td">{{ Board.content }}</td>
+          <td class="td">{{ getFormatedDate(Board.createdAt) }}</td>
           <td>
             <div v-if="Board.applicants && Board.applicants.length > 0">
               <ul>
-                <div v-for="applicant in Board.applicants" :key="applicant.id">
+                <div v-for="applicant in Board.applicants" :key="applicant.id" style="height: auto;">
                   <div class="applicant-item">
-                    <span> {{ applicant.name || '이름없음' }} </span>
+                    <span>{{applicant.name.trim()}} </span>
                     <div class="buttons">
                       <button @click="accept(Board.postId, applicant.userId)">수락</button>
-                      <button @click="deny(Board.postId, applicant.uesrId)">거절</button>
+                      <button @click="deny(Board.postId, applicant.userId)">거절</button>
                     </div>
                   </div>
                 </div>
@@ -103,6 +103,17 @@ export default {
           alert('요청이 정상적으로 처리되지 못했습니다.')
           console.log(error)
         })
+    },
+    deny (postId, applicantId) {
+      https.post(`/${postId}/refuse/${applicantId}`)
+        .then(response => {
+          alert('매칭이 거절되었습니다.')
+          location.reload()
+        })
+        .catch(error => {
+          alert('요청이 정상적으로 처리되지 못했습니다.')
+          console.log(error)
+        })
     }
   }
 }
@@ -115,8 +126,8 @@ export default {
     }
     .content-box {
       border: 1px solid #ccc;
-      width: 70%;
-      height: 70%;
+      width: 90%;
+      height: 90%;
     }
 
     .menu {
@@ -131,7 +142,7 @@ export default {
       display: flex;
       width: 30px;
       align-items: center;
-      height: 5px;
+      white-space: nowrap;
     }
     .buttons {
       display: flex;
@@ -140,5 +151,15 @@ export default {
     button {
       width: 50px;
       margin-left: 10px;
+    }
+
+    .td {
+      white-space: nowrap; /* 한 줄에 모든 텍스트를 표시합니다 */
+      overflow: hidden; /* 넘치는 텍스트를 감춥니다 */
+      text-overflow: ellipsis; /* 넘치는 텍스트를 "..."으로 표시합니다 */
+      max-width: 100px; /* 최대 텍스트 너비를 지정합니다 */
+    }
+    .applicant-item span {
+      white-space: nowrap;
     }
     </style>
