@@ -4,7 +4,5 @@ export function login (userid, password) {
   return instance.post('/login', {
     loginId: userid,
     password: password
-  }, {
-    withCredentials: true
   })
 }
