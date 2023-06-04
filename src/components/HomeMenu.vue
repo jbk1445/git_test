@@ -52,10 +52,12 @@
         <p class="find">
             <a href="/Password_find"></a>
         </p>
+        <button @click="test">체크</button>
     </div>
 </template>
 
 <script>
+import http from '@/api/http'
 import store from '@/store/index'
 import * as https from '@/api/https'
 export default {
@@ -112,6 +114,15 @@ export default {
       } else {
         this.$router.push('/')
       }
+    },
+    test () {
+      http.get('/')
+        .then(response => {
+          alert('성공')
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   },
   watch: {
