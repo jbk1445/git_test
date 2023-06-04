@@ -1,6 +1,7 @@
 {
   "name": "matched",
   "version": "0.1.0",
+  "proxy": "http://localhost:8082",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -10,6 +11,7 @@
   "dependencies": {
     "axios": "^1.4.0",
     "core-js": "^3.8.3",
+    "http-proxy-middleware": "^2.0.6",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
