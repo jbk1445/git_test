@@ -1,6 +1,5 @@
 import store from '@/store'
 import axios from 'axios'
-import router from '@/router'
 
 const instance = axios.create({
   baseURL: '/api'
@@ -10,9 +9,14 @@ instance.interceptors.response.use(async (config) => {
   return config
 },
 async (error) => {
+  const excludedUrls = ['/login', '/join', '/password_change']
   if (error.response.status === 401) {
     const token = localStorage.getItem('token')
     const refToken = localStorage.getItem('refreshtoken')
+    const requestUrl = error.config.url
+    if (excludedUrls.includes(requestUrl)) {
+      return Promise.reject(error)
+    }
     if (token && refToken) {
       const headers = {
         Authorization: `Bearer ${token}`
@@ -31,9 +35,7 @@ async (error) => {
           console.log(error)
         })
     } else {
-      alert('토큰 재발행에 실패했습니다. 다시 로그인해주세요')
-      store.commit('logout')
-      router.push('/LoginCheck')
+      return Promise.reject(error)
     }
   }
 })

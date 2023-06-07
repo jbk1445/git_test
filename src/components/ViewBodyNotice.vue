@@ -108,7 +108,7 @@ export default {
       left: 20%; top: 10%;
       display: block;
       border: 1px solid gray;
-      width: 570px;
+      width: 570px; font-size: medium;
       margin: 10px; padding: 15px;
   }
   .titles {

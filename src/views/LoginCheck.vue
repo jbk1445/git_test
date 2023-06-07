@@ -19,9 +19,6 @@
                         </div>
                         <button type="submit">로그인</button>
                         <div class="register">
-                            <button type="submit">게스트 로그인</button>
-                        </div>
-                        <div class="register">
                             <p>회원가입하러가기 <a href="/Register">회원가입</a></p>
                         </div>
                     </form>

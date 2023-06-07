@@ -9,15 +9,15 @@
                 <td>
                   <p>이메일</p>
                   <div class="inputbox">
-                    <input type="email" v-model="email" :readonly="IsVerify || toggleValue" placeholder="@mju.ac.kr">
+                    <input type="email" v-model="email" :readonly="IsVerify" placeholder="@mju.ac.kr">
                   </div>
                 </td>
                 <td>
-                  <div>
-                    <p style="float: left; margin-right: 10px;">이메일 인증</p>
-                    <button class="verify" v-if="!IsVerify" @click="gocheck">인증</button>
-                  </div>
                   <div v-if="IsVerify == false">
+                    <p style="float: left; margin-right: 10px;">이메일 인증</p>
+                    <button class="verify" @click="gocheck">인증</button>
+                  </div>
+                  <div>
                     <p style="float: left; margin-right: 10px;">게스트 회원가입</p>
                     <ToggleSwitch :value="toggleValue" @input="toggleValue  = $event"/>
                   </div>
@@ -27,13 +27,13 @@
                 <td>
                   <p>비밀번호</p>
                   <div class="inputbox">
-                    <input type="password" v-model="password" required :readonly="toggleValue">
+                    <input type="password" v-model="password" required>
                   </div>
                 </td>
                 <td>
                   <p>비밀번호 확인</p>
                   <div class="inputbox">
-                    <input type="password" required v-model="ConfirmPassword" :readonly="toggleValue">
+                    <input type="password" required v-model="ConfirmPassword">
                     <label><div v-if="!passwordMatch && this.ConfirmPassword">비밀번호가 일치하지 않습니다.</div></label>
                   </div>
                 </td>
@@ -42,13 +42,13 @@
                 <td>
                   <p>이름</p>
                   <div class="inputbox">
-                    <input type="name" v-model="name" required>
+                    <input type="name" v-model="name" required :readonly="toggleValue">
                   </div>
                 </td>
                 <td>
                   <p>학과</p>
                   <div class="inputbox">
-                    <input type="department" v-model="department" required>
+                    <input type="department" v-model="department" required :readonly="toggleValue">
                   </div>
                 </td>
               </tr>
@@ -57,11 +57,11 @@
                   <label for="birthdate">생년월일</label>
                   <div class="inputbox" style="width: 620px; border: none;">
                     <input type="text" class="birth" style="width: 175px; border: 2px solid #ccc;
-                     border-radius: 0; margin-right: 10px;" v-model="year" placeholder="년(4자리)" required>
+                     border-radius: 0; margin-right: 10px;" v-model="year" placeholder="년(4자리)" required :readonly="toggleValue">
                     <input type="text" class="birth" style="width: 175px; border: 2px solid #ccc;
-                     border-radius: 0; margin-right: 10px;" v-model="month" placeholder="월" required>
+                     border-radius: 0; margin-right: 10px;" v-model="month" placeholder="월" required :readonly="toggleValue">
                     <input type="text" class="birth" style="width: 175px; border: 2px solid #ccc;
-                     border-radius: 0;" v-model="day" required placeholder="일">
+                     border-radius: 0;" v-model="day" required placeholder="일" :readonly="toggleValue">
                   </div>
                 </td>
               </tr>
@@ -69,7 +69,7 @@
                 <td>
                   <p>학년</p>
                   <div class="inputbox">
-                    <select v-model="grade" required class="grade">
+                    <select v-model="grade" required class="grade" :disabled="toggleValue">
                       <option disabled value="">please select one</option>
                       <option>1학년</option>
                       <option>2학년</option>
@@ -81,7 +81,7 @@
                 <td>
                   <p>성별</p>
                   <div class="inputbox">
-                    <select v-model="sex" required class="grade">
+                    <select v-model="sex" required class="grade" :disabled="toggleValue">
                       <option disabled value="">please select one</option>
                       <option>남</option>
                       <option>여</option>
@@ -145,10 +145,16 @@ export default defineComponent({
   },
   watch: {
     toggleValue (newValue) {
-      if (newValue) {
-        this.email = null
-        this.password = null
-        this.ConfirmPassword = null
+      if (newValue === true) {
+        this.name = 'guest'
+        this.department = 'guestdepart'
+        this.year = '2023'; this.month = '06'; this.day = '07'
+        this.grade = '2학년'; this.sex = '여'
+      } else {
+        this.name = ''
+        this.department = ''
+        this.year = ''; this.month = ''; this.day = ''
+        this.grade = ''; this.sex = ''
       }
     }
   },
@@ -179,11 +185,10 @@ export default defineComponent({
         name: this.name,
         birth: birthdate,
         department: this.department,
-        grade: this.convertGradetoInt(this.grade),
+        gradle: this.convertGradetoInt(this.grade),
         sex: this.sex
       }
-      if (this.IsVerify === true || this.toggleValue === true) {
-        console.log(data)
+      if (this.IsVerify === true) {
         http.post('/join', data)
           .then(response => {
             alert('회원가입이 완료되었습니다.')

@@ -82,10 +82,9 @@
             <div class="userinfo3">
               <p>이름  {{ admin }}</p>
               <p>학과  {{ department }}</p>
-              <div>게시물 2~3개</div>
             </div>
           </div>
-          <div class="box2">자기소개</div>
+          <div class="box2">글쓴이</div>
         </div>
       </div>
     </div>
