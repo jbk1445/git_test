@@ -18,7 +18,7 @@
           </td>
         </tr>
         <tr v-for="Board in paginatedBoards" :key="Board.postId" style="line-height: 10px;">
-          <td class="td">{{ Board.title }}</td>
+          <td class="td"><a :href="`/Board/${Board.boardName}/view/${Board.postId}`">{{ Board.title }}</a></td>
           <td class="td">{{ Board.content }}</td>
           <td class="td">{{ getFormatedDate(Board.createdAt) }}</td>
           <td>

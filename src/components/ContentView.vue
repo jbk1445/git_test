@@ -105,8 +105,8 @@ export default {
       username: null,
       owner: false,
       BoardName: this.$route.params.BoardId,
-      postId: this.$route.params.postId
-
+      postId: this.$route.params.postId,
+      adminId: null
     }
   },
   mounted () {},
@@ -117,10 +117,11 @@ export default {
         this.title = response.data.title
         this.content = response.data.content
         this.admin = response.data.name
+        this.adminId = response.data.userId
         this.department = response.data.department
         https.get('/profile')
           .then(response => {
-            this.username = response.data.name
+            this.username = response.data.userId
             if (this.username === this.admin) {
               this.owner = true
             } else {
