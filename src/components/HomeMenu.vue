@@ -38,7 +38,6 @@
         <p class="find">
             <a href="/Password_find"></a>
         </p>
-        <button @click="test">체크</button>
     </div>
   </div>
 </template>

@@ -46,7 +46,7 @@ aside {
 }
 section {
   position: fixed; flex: 3;
-  height: 100%;
+  height: 800px;
   width: 69%;
 }
 </style>

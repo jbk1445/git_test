@@ -97,6 +97,7 @@ export default {
   align-items: center;
   gap: 20px;
   margin: 20px;
+  height: 800px;
 }
 
 .card {

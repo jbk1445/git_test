@@ -28,6 +28,7 @@
     </div>
 </template>
 <script>
+import * as https from '@/api/https'
 import { login } from '@/api/auth'
 import store from '@/store'
 export default {
@@ -54,6 +55,26 @@ export default {
           console.log(response.data)
           await store.dispatch('doLogin', response.data)
           this.$router.push('/')
+          setTimeout(this.refreshToken, 1000 * 60 * 5)
+        } else {
+          alert('error')
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async refreshToken () {
+      const accessToken = localStorage.getItem('token')
+      const refreshToken = localStorage.getItem('refreshtoken')
+      const data = {
+        accessToken,
+        refreshToken
+      }
+      try {
+        const response = await https.post('/reissue', data)
+        if (response.status === 200) {
+          await store.dispatch('doLogin', response.data)
+          setTimeout(this.refreshToken, 1000 * 60 * 5)
         } else {
           alert('error')
         }
