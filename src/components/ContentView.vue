@@ -74,6 +74,7 @@
           <button @click="Report = true">신고</button>
           <button @click="match">매칭</button>
           <button v-if="owner" @click="del()">삭제</button>
+          <button v-if="owner" @click="edit()">수정</button>
         </div>
         <div class="userinfo2">
           <div class="box2">
@@ -96,8 +97,6 @@ export default {
   name: 'ContentView',
   data () {
     return {
-      BoardId: null,
-      postId: null,
       Report: false,
       checkvalue: null,
       title: null,
@@ -105,36 +104,37 @@ export default {
       userdata: null,
       admin: null,
       username: null,
-      owner: false
+      owner: false,
+      BoardName: this.$route.params.BoardId,
+      postId: this.$route.params.postId
+
     }
   },
   mounted () {},
   created () {
-    const BoardName = this.$route.params.BoardId
-    const postId = this.$route.params.postId
-    const url = `/board/${BoardName}/${postId}`
+    const url = `/board/${this.BoardName}/${this.postId}`
     https.get(url)
       .then((response) => {
         this.title = response.data.title
         this.content = response.data.content
         this.admin = response.data.name
         this.department = response.data.department
+        https.get('/profile')
+          .then(response => {
+            this.username = response.data.name
+            if (this.username === this.admin) {
+              this.owner = true
+            } else {
+              this.owner = false
+            }
+            console.log(this.admin, this.username)
+          })
+          .catch(error => {
+            alert('현재 유저 정보를 불러올수 없습니다.')
+            console.log(error)
+          })
       })
       .catch((error) => {
-        console.log(error)
-      })
-    https.get('/profile')
-      .then(response => {
-        this.username = response.data.name
-        if (this.username === this.admin) {
-          this.owner = true
-        } else {
-          this.owner = false
-        }
-        console.log(response.data)
-      })
-      .catch(error => {
-        alert('현재 유저 정보를 불러올수 없습니다.')
         console.log(error)
       })
   },
@@ -148,7 +148,7 @@ export default {
         }
       }
       const data = {
-        reportedPostId: this.$route.params.postId,
+        reportedPostId: this.postId,
         content: this.checkvalue
       }
       https.post('/reports/boards', data)
@@ -160,10 +160,11 @@ export default {
           console.log(error)
         })
     },
+    edit () {
+      this.$router.push(`/Board/${this.BoardName}/edit/${this.postId}`)
+    },
     del () {
-      const BoardName = this.$route.params.BoardId
-      const postId = this.$route.params.postId
-      const url = `/board/${BoardName}/${postId}`
+      const url = `/board/${this.BoardName}/${this.postId}`
       https.del(url)
         .then(response => {
           alert('삭제되었습니다.')
@@ -177,8 +178,7 @@ export default {
       if (this.username === this.admin) {
         alert('본인 글에 매칭 요청을 할수 없습니다.')
       } else {
-        const postId = this.$route.params.postId
-        https.post(`/match/${postId}`)
+        https.post(`/match/${this.postId}`)
           .then(response => {
             alert('매칭 요청이 전송되었습니다.')
           })
@@ -305,6 +305,7 @@ button:last-of-type {
 
 .menu {
   display: flex;
+  background-color: white;
 }
 
 /* 신고 모달 */

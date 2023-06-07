@@ -31,7 +31,7 @@ export default {
 
 aside {
   position: fixed;
-  width: 25%;
+  width: 400px;
   z-index: 9;
   right: 0;
   top: 0;
@@ -41,9 +41,10 @@ aside {
 }
 
 section {
-  position: absolute;
+  position: fixed;
   flex: 3;
   height: 100%;
-  width: 69%;
+  width: 1296px;
+  align-items: center;
 }
 </style>

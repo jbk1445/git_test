@@ -1,26 +1,26 @@
 <template>
-<div class="title">
-    <h1 v-if="Board1">튜터링 게시판</h1>
-    <h1 v-if="Board2">동아리 게시판</h1>
-    <h1 v-if="Board3">캡스톤 게시판</h1>
-    <h1 v-if="Board4">품앗이 게시판</h1>
-</div>
-<div class="titles">
-    <label>필요인원 =
-    <select name="count" class="option" v-model="count">
-      <option v-for="n in 10" :key='n' :value="n">{{ n }}명</option>
-    </select></label>
-    <div class="inputbox">
-        <input type="write_title" v-model="title" placeholder="제목을 입력하세요">
-    </div>
-    <div class="editbox">
-        <div class="editarea" contenteditable @input="updateContent" ref="editarea"></div>
-        <div class="endline">
-            <button class="write" @click="write()">
-            <img class="img" src="../assets/pencil.png"></button>
-        </div>
-    </div>
+  <div class="title">
+      <h1 v-if="Board1">튜터링 게시판</h1>
+      <h1 v-if="Board2">동아리 게시판</h1>
+      <h1 v-if="Board3">캡스톤 게시판</h1>
+      <h1 v-if="Board4">품앗이 게시판</h1>
   </div>
+  <div class="titles">
+      <label>필요인원 =
+      <select name="count" class="option" v-model="count">
+        <option v-for="n in 10" :key='n' :value="n">{{ n }}명</option>
+      </select></label>
+      <div class="inputbox">
+          <input type="write_title" v-model="title" placeholder="제목을 입력하세요">
+      </div>
+      <div class="editbox">
+          <div class="editarea" contenteditable @input="updateContent" ref="editarea"></div>
+          <div class="endline">
+              <button class="write" @click="write()">
+              <img class="img" src="../assets/pencil.png"></button>
+          </div>
+      </div>
+    </div>
 </template>
 <script>
 import * as https from '@/api/https'
@@ -116,43 +116,43 @@ export default {
 }
 </script>
 
-<style scoped>
-.option {
+  <style scoped>
+  .option {
     width: 30%; height: 30%;
-}
-.img {
+  }
+  .img {
     width: 20px; height: 20px;
-}
-.write {
+  }
+  .write {
     float: right;
-}
-.endline {
+  }
+  .endline {
     border: 1px solid black;
     height: 6%;
-}
-.icon {
+  }
+  .icon {
     width: 16px; height: 16px;
-}
-.editarea {
+  }
+  .editarea {
     font-size: large;
     border: 1px solid black;
     height: 85%;
-}
-.btn-group {
+  }
+  .btn-group {
     display: flex;
     width: 15%;
     background-color: white;
-}
-.edittool {
+  }
+  .edittool {
     border: 1px solid black;
     display: block;
     height: 15%;
-}
-.editbox {
+  }
+  .editbox {
     display: block;
     height: 100%;
-}
-.inputbox input{
+  }
+  .inputbox input{
     width: 100%;
     height: 50px;
     background: transparent;
@@ -161,29 +161,29 @@ export default {
     font-size: 1em;
     padding: 0 35 0 5px;
     color: gray;
-}
-.inputbox {
+  }
+  .inputbox {
     position: relative;
     margin: 30px 0;
     width: 310px;
     border-bottom: 2px solid gray;
-}
-.title {
+  }
+  .title {
     position: relative;
     left: 20%; top: 10%;
     display: block; font-size: medium;
     border: 1px solid gray;
     width: 570px;
     margin: 10px; padding: 15px;
-}
-.titles {
+  }
+  .titles {
     position: relative;
     margin: 10px;
     width: 600px; height: 100%;
     left: 20%; top: 10%;
-}
-button {
+  }
+  button {
     width: 10%;
     background-color: #fff;
-}
+  }
 </style>

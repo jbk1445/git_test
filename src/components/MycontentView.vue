@@ -17,13 +17,13 @@
             지원현황
           </td>
         </tr>
-        <tr v-for="Board in Boards" :key="Board.postId" style="line-height: 10px;">
+        <tr v-for="Board in paginatedBoards" :key="Board.postId" style="line-height: 10px;">
           <td class="td">{{ Board.title }}</td>
           <td class="td">{{ Board.content }}</td>
           <td class="td">{{ getFormatedDate(Board.createdAt) }}</td>
           <td>
             <div v-if="Board.applicants && Board.applicants.length > 0">
-              <ul>
+              <ul style="padding-left: 0;">
                 <div v-for="applicant in Board.applicants" :key="applicant.id" style="height: auto;">
                   <div class="applicant-item">
                     <span>{{applicant.name.trim()}} </span>
@@ -40,6 +40,21 @@
             </div>
           </td>
         </tr>
+        <tr v-for="n in (pageSize - paginatedBoards.length)" :key="'empty-' + n">
+          <td style="height: 50px;"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="display: block;" colspan="4">
+            <div class="paginaion-buttons" style="display: flex; align-items: center; justify-content: center;">
+              <button @click="prevPage" :disabled="currentPage === 0" style="margin-right: 10px;">이전</button>
+              <span> 페이지:{{ currentPage + 1 }}</span>
+              <button @click="nextPage" :disabled="currentPage === totalPages-1">다음</button>
+            </div>
+          </td>
+        </tr>
       </table>
     </div>
   </div>
@@ -50,7 +65,19 @@ export default {
   data () {
     return {
       data: null,
-      Boards: []
+      Boards: [],
+      currentPage: 0,
+      pageSize: 8
+    }
+  },
+  computed: {
+    paginatedBoards () {
+      const start = this.currentPage * this.pageSize
+      const end = start + this.pageSize
+      return this.Boards.slice(start, end)
+    },
+    totalPages () {
+      return Math.ceil(this.Boards.length / this.pageSize)
     }
   },
   created () {
@@ -114,6 +141,16 @@ export default {
           alert('요청이 정상적으로 처리되지 못했습니다.')
           console.log(error)
         })
+    },
+    nextPage () {
+      if (this.currentPage < this.totalPages - 1) {
+        this.currentPage++
+      }
+    },
+    prevPage () {
+      if (this.currentPage > 0) {
+        this.currentPage--
+      }
     }
   }
 }
@@ -127,7 +164,7 @@ export default {
     .content-box {
       border: 1px solid #ccc;
       width: 90%;
-      height: 90%;
+      height: 600px;
     }
 
     .menu {
@@ -135,14 +172,16 @@ export default {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      background-color: white;
+      width: 1300px;
+      height: 800px;
     }
 
     .applicant-item {
       display: flex;
       width: 30px;
       align-items: center;
-      white-space: nowrap;
+      justify-content: space-between;
     }
     .buttons {
       display: flex;
@@ -158,6 +197,7 @@ export default {
       overflow: hidden; /* 넘치는 텍스트를 감춥니다 */
       text-overflow: ellipsis; /* 넘치는 텍스트를 "..."으로 표시합니다 */
       max-width: 100px; /* 최대 텍스트 너비를 지정합니다 */
+      height: 50px;
     }
     .applicant-item span {
       white-space: nowrap;

@@ -20,7 +20,7 @@ const store = createStore({
       state.token = token
       localStorage.setItem('token', token)
     },
-    logout (state) {
+    logout () {
       store.commit('clearstate')
       localStorage.clear()
     }

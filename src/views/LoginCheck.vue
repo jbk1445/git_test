@@ -19,6 +19,9 @@
                         </div>
                         <button type="submit">로그인</button>
                         <div class="register">
+                            <button type="submit">게스트 로그인</button>
+                        </div>
+                        <div class="register">
                             <p>회원가입하러가기 <a href="/Register">회원가입</a></p>
                         </div>
                     </form>
@@ -51,6 +54,7 @@ export default {
 
         if (response) {
           alert('로그인 되었습니다.')
+          console.log(response.data)
           await store.dispatch('doLogin', response.data)
           this.$router.push('/')
         } else {
@@ -163,6 +167,7 @@ button{
     outline: none;
     cursor: 1em;
     font-weight: 600;
+    margin-bottom: 10px;
 }
 .register{
     font-size: .9em;

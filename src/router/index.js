@@ -14,6 +14,7 @@ import view from '../views/ContentView.vue'
 import CompleteVerify from '../views/complete_verify.vue'
 import users from '../views/Mypage.vue'
 import MainPage from '../views/MainPage.vue'
+import BoardEdit from '@/views/BoardEdit.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -94,6 +95,12 @@ const router = createRouter({
       path: '/',
       name: 'main',
       component: MainPage,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/Board/:BoardId/edit/:postId',
+      name: 'BoardEdit',
+      component: BoardEdit,
       meta: { requiresAuth: true }
     }
   ]

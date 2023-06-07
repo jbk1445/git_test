@@ -44,6 +44,7 @@ export default {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color: white;
 }
 .box {
     width: 30%; margin: 10px;

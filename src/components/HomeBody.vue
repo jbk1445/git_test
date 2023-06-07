@@ -5,7 +5,7 @@
           <div class="title2">
               <h3><a href="/Board/tutoring">튜터링 게시판</a></h3>
               <div  v-for="Board in board1" :key="Board.postId" class="list">
-                <a class="article" :href="`/Board/Notice/view/${Board.postId}`">
+                <a class="article" :href="`/Board/tutoring/view/${Board.postId}`">
                   <h2 class="medium">{{ Board.title }}</h2>
                   <span class="date">{{ $getFormatedDate(Board.createdAt) }}</span>
                 </a>
@@ -18,7 +18,7 @@
           <div class="title2">
             <h3><a href="/Board/club">동아리 게시판</a></h3>
             <div  v-for="Board in board2" :key="Board.postId" class="list">
-              <router-link :to="`/Board/Notice/view/${Board.postId}`" class="article">
+              <router-link :to="`/Board/club/view/${Board.postId}`" class="article">
                 <h2 class="medium">{{ Board.title }}</h2>
                 <span class="date">{{ $getFormatedDate(Board.createdAt) }}</span>
               </router-link>
@@ -31,7 +31,7 @@
           <div class="title2">
             <h3><a href="/Board/capstone">캡스톤 게시판</a></h3>
             <div  v-for="Board in board3" :key="Board.postId" class="list">
-              <router-link :to="`/Board/Notice/view/${Board.postId}`" class="article">
+              <router-link :to="`/Board/capstone/view/${Board.postId}`" class="article">
                 <h2 class="medium">{{ Board.title }}</h2>
                 <span class="date">{{ $getFormatedDate(Board.createdAt) }}</span>
               </router-link>
@@ -44,7 +44,7 @@
           <div class="title2">
           <h3><a href="/Board/poom">품앗이 게시판</a></h3>
           <div  v-for="Board in board4" :key="Board.postId" class="list">
-              <router-link :to="`/Board/Notice/view/${Board.postId}`" class="article">
+              <router-link :to="`/Board/poom/view/${Board.postId}`" class="article">
                 <h2 class="medium">{{ Board.title }}</h2>
                 <span class="date">{{ $getFormatedDate(Board.createdAt) }}</span>
               </router-link>
@@ -100,8 +100,7 @@ export default {
 }
 
 .card {
-  width: calc(50% - 10px);
-  min-width: 300px;
+  width: 550px;
   border-radius: 10px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -110,6 +109,7 @@ export default {
 .board {
   padding: 20px;
   height: 300px;
+  width: 510px;
   border: 1px solid #ccc;
 }
 

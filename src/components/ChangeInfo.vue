@@ -38,7 +38,7 @@
             <div class="list">학년 {{ grade }}학년</div>
             <div class="list">성별 {{ sex }}</div>
         </div>
-        </div>
+    </div>
     </template>
 
 <script>
@@ -101,7 +101,9 @@ export default {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      background-color: white;
+      width: 1300px;
+      height: 800px;
     }
     .title {
       font-size: 2rem;

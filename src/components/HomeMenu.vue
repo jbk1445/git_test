@@ -1,4 +1,5 @@
 <template>
+  <div class="container">
     <div v-if="this.$store.state.token" class="login">
         <a href="/" class="logo"><img src="../assets/Logo2.png" alt="MATCHED" width="100" height="100"></a>
         <div class="myname">{{ name }}님 안녕하세요
@@ -7,38 +8,23 @@
         <button @click="logout">로그아웃</button>
         <hr>
         <div class="tabs">
-            <span class="tab" :class="{active: activeTab === '공지'}" @click="activeTab = '공지'">공지</span>
-            <span class="tab" :class="{active: activeTab === '알림'}" @click="activeTab = '알림'">알림</span>
+            <span class="tab">공지사항</span>
         </div>
         <hr>
-        <div class="tab-content" v-if="activeTab === '공지'">
-            <div class="list"><router-link to='/Board/Notice'>게시판 이동</router-link></div>
-            <a class="list">
+        <div class="tab-content">
+            <a class="list" :href="`Board/notice/view/${Notice.postId1}`">
                 <p>{{ Notice.name1 }}</p>
             </a>
-            <a class="list">
+            <a class="list" :href="`Board/notice/view/${Notice.postId2}`">
                 <p>{{ Notice.name2 }}</p>
             </a>
-            <a class="list">
+            <a class="list" :href="`Board/notice/view/${Notice.postId3}`">
                 <p>{{ Notice.name3 }}</p>
             </a>
-            <a class="list">
+            <a class="list" :href="`Board/notice/view/${Notice.postId4}`">
                 <p>{{ Notice.name4 }}</p>
             </a>
-    </div>
-        <div class="tab-content" v-else-if="activeTab === '알림'">
-            <a class="list">
-                <p>알림사항1</p>
-            </a>
-            <a class="list">
-                <p>알림사항2</p>
-            </a>
-            <a class="list">
-                <p>알림사항3</p>
-            </a>
-            <a class="list">
-                <p>알림사항4</p>
-            </a></div>
+        </div>
     </div>
 
     <div v-else class="login">
@@ -54,6 +40,7 @@
         </p>
         <button @click="test">체크</button>
     </div>
+  </div>
 </template>
 
 <script>
@@ -64,9 +51,8 @@ export default {
   data () {
     return {
       isLoggedIn: false,
-      activeTab: '공지',
       room: { name1: '', name2: '', name3: '', name4: '' },
-      Notice: { name1: '', name2: '', name3: '', name4: '' },
+      Notice: { name1: '', name2: '', name3: '', name4: '', postId1: '', postId2: '', postId3: '', postId4: '' },
       name: ''
     }
   },
@@ -91,6 +77,7 @@ export default {
           if (response.data.length <= 3) {
             for (let i = 0; i < response.data.length; i++) {
               this.Notice['name' + (i + 1)] = response.data[response.data.length - i - 1].title
+              this.Notice['postId' + (i + 1)] = response.data[response.data.length - i - 1].noticeId
             }
           } else {
             for (let i = 0; i < 4; i++) {
@@ -152,6 +139,7 @@ a.list{
     border-top: 1px solid #e3e3e3;
     text-decoration: none;
     text-align: left;
+    height: 45px;
 }
 .tabs {
     display: flex;
@@ -216,6 +204,10 @@ div {
 .login {
     text-align: center;
     height: 50%
+}
+
+.container {
+  width: 429px;
 }
 
 </style>

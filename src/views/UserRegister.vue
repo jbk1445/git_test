@@ -9,24 +9,31 @@
                 <td>
                   <p>이메일</p>
                   <div class="inputbox">
-                    <input type="email" v-model="email" :readonly="IsVerify" placeholder="@mju.ac.kr">
+                    <input type="email" v-model="email" :readonly="IsVerify || toggleValue" placeholder="@mju.ac.kr">
                   </div>
                 </td>
                 <td>
-                  <button class="verify" v-if="!IsVerify" @click="gocheck">인증</button>
+                  <div>
+                    <p style="float: left; margin-right: 10px;">이메일 인증</p>
+                    <button class="verify" v-if="!IsVerify" @click="gocheck">인증</button>
+                  </div>
+                  <div v-if="IsVerify == false">
+                    <p style="float: left; margin-right: 10px;">게스트 회원가입</p>
+                    <ToggleSwitch :value="toggleValue" @input="toggleValue  = $event"/>
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td>
                   <p>비밀번호</p>
                   <div class="inputbox">
-                    <input type="password" v-model="password" required>
+                    <input type="password" v-model="password" required :readonly="toggleValue">
                   </div>
                 </td>
                 <td>
                   <p>비밀번호 확인</p>
                   <div class="inputbox">
-                    <input type="password" required v-model="ConfirmPassword">
+                    <input type="password" required v-model="ConfirmPassword" :readonly="toggleValue">
                     <label><div v-if="!passwordMatch && this.ConfirmPassword">비밀번호가 일치하지 않습니다.</div></label>
                   </div>
                 </td>
@@ -94,6 +101,7 @@
 </template>
 
 <script>
+import ToggleSwitch from '@/components/ToggleSwitch.vue'
 import { defineComponent } from 'vue'
 import http from '@/api/http'
 
@@ -111,8 +119,12 @@ export default defineComponent({
       IsVerify: false,
       loading: false,
       grade: '',
-      sex: ''
+      sex: '',
+      toggleValue: false
     }
+  },
+  components: {
+    ToggleSwitch
   },
   mounted () {
     if (localStorage.getItem('IsVerify')) {
@@ -129,6 +141,15 @@ export default defineComponent({
   computed: {
     passwordMatch () {
       return this.password === this.ConfirmPassword
+    }
+  },
+  watch: {
+    toggleValue (newValue) {
+      if (newValue) {
+        this.email = null
+        this.password = null
+        this.ConfirmPassword = null
+      }
     }
   },
   methods: {
@@ -161,7 +182,7 @@ export default defineComponent({
         grade: this.convertGradetoInt(this.grade),
         sex: this.sex
       }
-      if (this.IsVerify === true) {
+      if (this.IsVerify === true || this.toggleValue === true) {
         console.log(data)
         http.post('/join', data)
           .then(response => {
@@ -188,7 +209,7 @@ export default defineComponent({
 }
 .verify {
   width: 30%;
-  height: 60px;
+  height: 36px;
 }
 
 section{

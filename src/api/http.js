@@ -1,37 +1,41 @@
 import store from '@/store'
 import axios from 'axios'
+import router from '@/router'
 
 const instance = axios.create({
   baseURL: '/api'
 })
 
 instance.interceptors.response.use(async (config) => {
-  const token = localStorage.getItem('token')
-  const refreshtoken = localStorage.getItem('refreshtoken')
-  if (token) {
-    const now = new Date().getTime()
-    const expdate = localStorage.getItem('expdate')
-    if (now > expdate) {
+  return config
+},
+async (error) => {
+  if (error.response.status === 401) {
+    const token = localStorage.getItem('token')
+    const refToken = localStorage.getItem('refreshtoken')
+    if (token && refToken) {
       const headers = {
         Authorization: `Bearer ${token}`
       }
       const data = {
-        grantType: 'Bearer',
-        acessToken: token,
-        refreshToken: refreshtoken,
-        accessTokenExpiresln: expdate
+        accessToken: token,
+        refreshToken: refToken
       }
-      try {
-        const response = await instance.post('/reissue', data, { headers })
-        alert('토큰이 재발행되었습니다.')
-        store.commit('doLogin', response.data)
-      } catch (error) {
-        alert('예기치 못한 이유로 토큰 재발행에 실패했습니다.')
-        console.log(error)
-      }
+      console.log(headers, data)
+      instance.post('/reissue', data, { headers })
+        .then(response => {
+          store.commit('doLogin', response.data)
+          return Promise.resolve(instance(error.config))
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    } else {
+      alert('토큰 재발행에 실패했습니다. 다시 로그인해주세요')
+      store.commit('logout')
+      router.push('/LoginCheck')
     }
   }
-  return config
 })
 
 export default instance

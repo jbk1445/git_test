@@ -1,8 +1,8 @@
 import instance from './http'
 
-export function login (userid, password) {
+export function login (loginId, password) {
   return instance.post('/login', {
-    loginId: userid,
-    password: password
+    loginId,
+    password
   })
 }

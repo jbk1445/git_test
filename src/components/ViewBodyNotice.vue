@@ -69,7 +69,7 @@ export default {
     },
     writenotice () {
       https.post('/board/notice', {
-        title: '공지 테스트2',
+        title: '공지 테스트11',
         content: '공지 테스트 내용2'
       })
         .then(response => {

@@ -1,26 +1,28 @@
 <template>
-<div class="title">
-    <h1>튜터링 게시판</h1>
-</div>
-<div class="titles">
-    <div  v-for="Board in Boards" :key="Board.postId" class="list">
-        <router-link :to="`/Board/tutoring/view/${Board.postId}`" class="article">
-            <h2 class="medium">{{ Board.title }}</h2>
-            <p class="small">{{ Board.content }}</p>
-            <time class="small">{{ $getFormatedDate(Board.createdAt) }}</time>
-        </router-link>
+  <div class="container">
+    <div class="title">
+        <h1>튜터링 게시판</h1>
     </div>
-    <div class="float-center">
-      <div class="down-area">
-        <ul>
-          <li v-for="page in pages" :key="page" @click="reloadpage(page)" :class="{ 'selected': currentPage === page}">
-          {{ page }}
-        </li>
-        </ul>
-        <button class="next" @click="gowrite()">글쓰기</button>
+    <div class="titles">
+        <div  v-for="Board in Boards" :key="Board.postId" class="list">
+            <router-link :to="`/Board/tutoring/view/${Board.postId}`" class="article">
+                <h2 class="medium">{{ Board.title }}</h2>
+                <p class="small">{{ Board.content }}</p>
+                <time class="small">{{ $getFormatedDate(Board.createdAt) }}</time>
+            </router-link>
+        </div>
+        <div class="float-center">
+          <div class="down-area">
+            <ul>
+              <li v-for="page in pages" :key="page" @click="reloadpage(page)" :class="{ 'selected': currentPage === page}">
+              {{ page }}
+            </li>
+            </ul>
+            <button class="next" @click="gowrite()">글쓰기</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
