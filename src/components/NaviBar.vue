@@ -25,13 +25,11 @@ export default {
       links: [
         {
           id: 1,
-          icon: 'fab fa-react',
           href: '/',
           text: 'Home'
         },
         {
           id: 2,
-          icon: 'none',
           text: '게시판'
         },
         {
@@ -79,8 +77,8 @@ export default {
 <style>
 :root {
   --link-text-color: #f1faee;
-  --menu-background-color: #008b71;
-  --active-background-color: #008b71;
+  --menu-background-color: #0E1D31;
+  --active-background-color: #0E1D31;
 }
 
 .menu {
@@ -122,7 +120,7 @@ export default {
   list-style-type: none;
   position: absolute;
   z-index: 2;
-  background-color: #008b71;
+  background-color: #0E1D31;
   top: 100%;
   left: 115px;
   border-radius: 2px;
@@ -138,6 +136,6 @@ export default {
 }
 
 .submenu li a:hover {
-  background-color: #006d5b;
+  background-color: #0E1D31;
 }
 </style>

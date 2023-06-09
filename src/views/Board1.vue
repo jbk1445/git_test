@@ -1,12 +1,10 @@
 <template>
-  <div class="container">
-    <section>
-      <ViewBody/>
-    </section>
-    <aside>
-      <HomeMenu/>
-    </aside>
-  </div>
+  <section>
+    <ViewBody/>
+  </section>
+  <aside>
+    <HomeMenu/>
+  </aside>
 </template>
 
 <script>
@@ -26,25 +24,14 @@ export default {
 
 .container {
   height: 100%;
-  overflow-y: scroll;
 }
 
 aside {
-  position: fixed;
-  width: 400px;
-  z-index: 9;
-  right: 0;
-  top: 0;
-  height: 100%;
-  border-left: 1px solid #d6d6d6;
-  background-color: #fff;
+  position: fixed; width: 25%; z-index: 9; right: 0; top: 0; height: 100%; overflow-y: auto; -ms-overflow-style: none; background-color: white; flex: 0.6;
 }
 
 section {
-  position: fixed;
-  flex: 3;
-  height: 100%;
-  width: 1296px;
-  align-items: center;
+  position: fixed; flex: 3;
+  height: 100%; width: 75%;
 }
 </style>

@@ -158,11 +158,6 @@ a {
   text-decoration: none;
 }
 
-@font-face {
-  font-family: 'font';
-  src: url('@/assets/fonts/malgun.ttf')
-}
-
 div {
   font-family: 'font';
   color: #737373;

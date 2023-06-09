@@ -147,7 +147,7 @@ button {
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    background-color: #008b71   ;
+    background-color: #0E1D31;
     border-radius: 40px;
     color: #fff;
     cursor: pointer;

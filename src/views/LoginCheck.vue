@@ -4,7 +4,7 @@
             <div class= 'form-box'>
                 <div class= 'form-value'>
                     <form @submit.prevent="login">
-                        <h1> <a href="/" class="logo"><img src="../assets/Logo2.png" height="100" width="100"></a> 로그인 </h1>
+                        <h1> <a href="/" class="logo"><img src="../assets/newlogo2.png" height="100" width="100"></a> 로그인 </h1>
                         <div class="inputbox">
                             <input type="text" id="loginId" v-model="loginId"/>
                             <label for="">이메일</label>
@@ -120,7 +120,7 @@ section{
 }
 h1{
     font-size: 2em;
-    color: #008b71;
+    color: #0E1D31;
 }
 .inputbox{
     position: relative;
@@ -180,7 +180,7 @@ button{
     width: 100%;
     height: 40px;
     border-radius: 40px;
-    background: #008b71;
+    background: #0E1D31;
     border: none;
     outline: none;
     cursor: 1em;

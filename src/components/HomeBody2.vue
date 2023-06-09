@@ -12,6 +12,7 @@
 .image {
     height: 600px;
     width: 300px;
+    background-color: #0E1D31;
 }
 .image-view {
     display: flex;
@@ -28,8 +29,10 @@
 }
 
 .logo {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 180px;
+    -webkit-filter: opacity(.5) drop-shadow(0 0 0 #0E1D31);
+    filter: opacity(.5) drop-shadow(0 0 0 #0E1D31);
 }
 
 </style>

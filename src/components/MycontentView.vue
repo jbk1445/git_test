@@ -1,6 +1,8 @@
 <template>
   <div class="menu">
-    <h2>나의 게시글 보기</h2>
+    <div class="header">
+        <h2>나의 게시글 보기</h2>
+      </div>
     <div class="content-box">
       <table>
         <tr style="height: 5%">
@@ -155,51 +157,47 @@ export default {
   }
 }
 </script>
-    <style scoped>
+<style scoped>
 
-    table {
-      width: 100%;
-      height: 100%;
-    }
-    .content-box {
-      border: 1px solid #ccc;
-      width: 90%;
-      height: 600px;
-    }
+table {
+  width: 100%;
+  height: 100%;
+}
+.content-box {
+  border: 1px solid #ccc;
+  width: 90%;
+  height: 60%;
+}
 
-    .menu {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background-color: white;
-      width: 1300px;
-      height: 800px;
-    }
+.menu {
+  left: 10%;
+  display: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 90%;
+  height: 100%;
+}
+.buttons {
+  width: 100%;
+}
 
-    .applicant-item {
-      display: flex;
-      width: 30px;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .buttons {
-      display: flex;
-    }
+.paginaion-buttons button {
+  width: 10%;
+  margin-left: 10px;
+}
 
-    button {
-      width: 50px;
-      margin-left: 10px;
-    }
+.td {
+  white-space: nowrap; /* 한 줄에 모든 텍스트를 표시합니다 */
+  overflow: hidden; /* 넘치는 텍스트를 감춥니다 */
+  text-overflow: ellipsis; /* 넘치는 텍스트를 "..."으로 표시합니다 */
+  max-width: 100px; /* 최대 텍스트 너비를 지정합니다 */
+  height: 50px;
+}
 
-    .td {
-      white-space: nowrap; /* 한 줄에 모든 텍스트를 표시합니다 */
-      overflow: hidden; /* 넘치는 텍스트를 감춥니다 */
-      text-overflow: ellipsis; /* 넘치는 텍스트를 "..."으로 표시합니다 */
-      max-width: 100px; /* 최대 텍스트 너비를 지정합니다 */
-      height: 50px;
-    }
-    .applicant-item span {
-      white-space: nowrap;
-    }
-    </style>
+.header h2 {
+  position: relative;
+  left: 38%;
+}
+</style>

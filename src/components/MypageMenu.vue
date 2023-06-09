@@ -1,9 +1,10 @@
 <template>
-    <div class="list" style="text-align: center;"><a href="/" class="logo"><img src="../assets/Logo2.png" alt="MATCHED" width="100" height="100"></a></div>
+    <div class="list" style="text-align: center;"><a href="/" class="logo"><img src="../assets/newlogo2.png" alt="MATCHED" width="100" height="100"></a></div>
     <div class="list2" @click="setMainTrue">계정 관리</div>
     <div class="list2" @click="setInfoTrue">☻계정 정보</div>
     <div class="list2" @click="setPwTrue">🔒보안</div>
     <div class="list2" @click="setmyTrue">나의 게시글</div>
+    <div class="list2" @click="setApplyTrue">신청 게시글</div>
     <div class="button-container">
       <button @click="confirmquit()">회원 탈퇴</button>
     </div>
@@ -25,6 +26,9 @@ export default {
     },
     setmyTrue () {
       this.$emit('change-section-mywrite')
+    },
+    setApplyTrue () {
+      this.$emit('change-section-myapply')
     },
     quit () {
       https.del('/my')
@@ -78,6 +82,6 @@ button {
 }
 .button-container {
   position: relative;
-  top: 45%;
+  top: 40%;
 }
 </style>

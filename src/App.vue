@@ -20,9 +20,10 @@ export default {
   height: 5%;
 }
 router-view {
-  height: 90%;
+  height: 95%;
 }
 body {
   font-family: "Roboto", sans-serif;
+  background-color: white;
 }
 </style>

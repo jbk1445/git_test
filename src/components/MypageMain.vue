@@ -44,15 +44,15 @@ export default {
     align-items: center;
     justify-content: center;
     background-color: white;
-    height: 100vh;
+    height: 100%;
 }
 .box {
-    width: 30%; margin: 10px;
+    width: 30%; margin: 20px;
     border: 1px solid #ccc;
     text-align: center;
 }
 .boxmenu {
-    height: 40%; width: 100%;
+    height: 40%; width: 90%;
     border: 1px solid #ccc;
     display: flex;
     flex-direction: row;

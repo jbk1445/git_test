@@ -1,4 +1,4 @@
 body {
     font-family: 'defaultFont';
-    src: url('../assets/fonts/malgun.ttf') format('truetype')
+    src: url('./fonts/medium.ttf') format('truetype')
 }

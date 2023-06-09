@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-if="this.$store.state.token" class="login">
-        <a href="/" class="logo"><img src="../assets/Logo2.png" alt="MATCHED" width="100" height="100"></a>
+        <a href="/" class="logo"><img src="../assets/newlogo2.png" alt="MATCHED" width="100" height="100"></a>
         <div class="myname">{{ name }}님 안녕하세요
         </div>
         <a href="/users" class="button-login">내정보</a>
@@ -12,16 +12,16 @@
         </div>
         <hr>
         <div class="tab-content">
-            <a class="list" :href="`Board/notice/view/${Notice.postId1}`">
+            <a class="list" :href="`/Board/notice/view/${Notice.postId1}`">
                 <p>{{ Notice.name1 }}</p>
             </a>
-            <a class="list" :href="`Board/notice/view/${Notice.postId2}`">
+            <a class="list" :href="`/Board/notice/view/${Notice.postId2}`">
                 <p>{{ Notice.name2 }}</p>
             </a>
-            <a class="list" :href="`Board/notice/view/${Notice.postId3}`">
+            <a class="list" :href="`/Board/notice/view/${Notice.postId3}`">
                 <p>{{ Notice.name3 }}</p>
             </a>
-            <a class="list" :href="`Board/notice/view/${Notice.postId4}`">
+            <a class="list" :href="`/Board/notice/view/${Notice.postId4}`">
                 <p>{{ Notice.name4 }}</p>
             </a>
         </div>
@@ -29,7 +29,7 @@
 
     <div v-else class="login">
         <!-- 로그인 페이지 상단 로고 -->
-        <a href="/" class="logo"><img src="../assets/Logo2.png" alt="MATCHED" width="100" height="100"></a>
+        <a href="/" class="logo"><img src="../assets/newlogo2.png" alt="MATCHED" width="100" height="100"></a>
         <!-- 로그인 버튼 -->
         <a href="/loginCheck" class="button-login">로그인</a>
         <!-- 회원가입 버튼 -->
@@ -128,7 +128,7 @@ a.list{
 .tabs {
     display: flex;
     justify-content: center;
-    background-color: #008b71;
+    background-color: #0E1D31;
     border-radius: 40px;
 }
 .tab {
@@ -167,7 +167,7 @@ div {
 .button-login {
     display: block; margin-bottom: 5px; height: 40px; line-height: 40px; box-sizing: border-box;
     border-radius: 40px; text-decoration: none;
-    font-size: 14px; font-weight: bold; text-align: center; border: 1px solid #e3e3e3; color: #737373;
+    font-size: 14px; font-weight: bold; text-align: center; border: 1px solid #e3e3e3; color: #0E1D31;
 }
 .logo {
     text-align: center;
@@ -175,12 +175,12 @@ div {
 .button-register {
     display: block; margin-bottom: 5px; height: 40px; line-height: 40px; box-sizing: border-box;
     border-radius: 40px; text-align: center; text-decoration: none;
-    font-size: 14px; font-weight: bold; text-align: center; color: #fff; background-color: #008f71;
+    font-size: 14px; font-weight: bold; text-align: center; color: #fff; background-color: #0E1D31;
 }
 .button-afterlogin {
     display:inline-block; margin-bottom: 5px; height: 40px; line-height: 40px; box-sizing: border-box;
     border-radius: 40px; width: 20%; position: relative;
-    font-size: 14px; font-weight: bold; text-align: center; color: #fff; background-color: #008f71;
+    font-size: 14px; font-weight: bold; text-align: center; color: #fff; background-color: #0E1D31;
 }
 .find {
     padding: 5px 5px 0 5px; width: 50%; box-sizing: border-box; float: right; text-align: right; height: 15px; line-height: 15px; color: #444444; font-size: 12px; cursor: pointer;

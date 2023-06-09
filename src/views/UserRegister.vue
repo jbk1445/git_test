@@ -3,7 +3,7 @@
     <section>
       <div class="form-box">
         <div class="form-value">
-          <h2> <a href="/" class="logo"><img src="../assets/Logo2.png" height="100" width="100"></a>회원가입</h2>
+          <h2> <a href="/" class="logo"><img src="../assets/newlogo2.png" height="100" width="100"></a>회원가입</h2>
             <table>
               <tr>
                 <td>
@@ -246,7 +246,7 @@ section{
 }
 h2{
     font-size: 2em;
-    color: #008b71;
+    color: #0E1D31;
     text-align: center;
 }
 .inputbox{
@@ -307,7 +307,7 @@ button{
     width: 100%;
     height: 40px;
     border-radius: 40px;
-    background: #008b71;
+    background: #0E1D31;
     border: none;
     outline: none;
     cursor: 1em;
@@ -315,7 +315,7 @@ button{
 }
 .register{
     font-size: .9em;
-    color: #008b71;
+    color: #0E1D31;
     text-align: center;
     margin: 25px 0 10px;
 }

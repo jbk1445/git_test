@@ -70,7 +70,7 @@
       <div class="box"><h1 class="title">{{ title }}</h1></div>
       <div class="content">
         <div class="content2">{{ content }}</div>
-        <div class="menu">
+        <div class="menu" v-if="BoardName !== 'notice'">
           <button @click="Report = true">신고</button>
           <button @click="match">매칭</button>
           <button v-if="owner" @click="del()">삭제</button>
@@ -80,8 +80,9 @@
           <div class="box2">
             <div class="avatar"><img src="@/assets/edit.png" class="img"></div>
             <div class="userinfo3">
-              <p>이름  {{ admin }}</p>
-              <p>학과  {{ department }}</p>
+              <p v-if="BoardName !== 'notice'">이름  {{ admin }}</p>
+              <p v-else>이름 admin</p>
+              <p v-if="BoardName !== 'notice'">학과  {{ department }}</p>
             </div>
           </div>
           <div class="box2">글쓴이</div>
@@ -228,7 +229,6 @@ body {
 
 /* 유저 정보 */
 .userinfo {
-  height: 20px;
   font-size: 14px;
   color: #666666;
 }
@@ -271,7 +271,7 @@ button:last-of-type {
 .userinfo2 {
   display: flex;
   width: 700px;
-  height: 200px;
+  height: 25%;
   border: 1px solid #ccc;
   margin-top: 20px;
   border-radius: 10px;

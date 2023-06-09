@@ -188,4 +188,9 @@ button {
 .selected {
   background-color: #F2CB6C;
 }
+
+.container {
+  width: 100%;
+  height: 75%;
+}
 </style>

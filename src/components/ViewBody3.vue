@@ -89,72 +89,73 @@ export default {
 }
 </script>
 
-    <style scoped>
-    form {
-        float: left;
-        margin-top: 5px;
-        margin-left: 5px;
-        padding: 8px 25px 8px 5px;
-        border: 1px solid #a6a6a6;
-        border-radius: 3px;
-    }
-    .next {
-        float: right;
-        margin: 10px;
-    }
-    .title {
-        position: relative;
-        left: 20%; top: 10%;
-        display: block;
-        border: 1px solid gray;
-        width: 570px; font-size: medium;
-        margin: 10px; padding: 15px;
-    }
-    .titles {
-        position: relative;
-        margin: 10px;
-        width: 600px; height: 100%;
-        left: 20%; top: 10%;
-    }
-    .list {
-        display: block;
-        padding: 12px;
-        border: 1px solid #e3e3e3;
-        text-decoration: none;
-        text-align: left;
-        padding: 15px; width: 600px;
-        margin-bottom: -1px;
-        box-sizing: border-box;
-    }
-    *{
-        margin: 0;
-    }
-    .h2.article {
-        display: block;
-        padding: 15px;
-    }
-    a {
-        text-decoration: none;
-    }
-    .medium {
-        margin-bottom: 5px;
-        line-height: 18px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-size: 14px;
-        font-weight: normal;
-    }
-    .small {
-        margin-bottom: 5px;
-        max-height: 30px;
-        line-height: 15px;
-        white-space: normal;
-        overflow: hidden;
-        color: #a6a6a6;
-        font-size: 12px;
-    }
-    .float-center {
+<style scoped>
+form {
+    float: left;
+    margin-top: 5px;
+    margin-left: 5px;
+    padding: 8px 25px 8px 5px;
+    border: 1px solid #a6a6a6;
+    border-radius: 3px;
+}
+.next {
+    float: right;
+    margin: 10px;
+}
+.title {
+    position: relative;
+    left: 20%; top: 10%;
+    display: block; font-size: medium;
+    border: 1px solid gray;
+    width: 570px;
+    margin: 10px; padding: 15px;
+}
+.titles {
+    position: relative;
+    margin: 10px;
+    width: 600px; height: 100%;
+    left: 20%; top: 10%;
+}
+.list {
+    display: block;
+    padding: 12px;
+    border: 1px solid #e3e3e3;
+    text-decoration: none;
+    text-align: left;
+    padding: 15px; width: 600px;
+    margin-bottom: -1px;
+    box-sizing: border-box;
+}
+*{
+    margin: 0;
+}
+.h2.article {
+    display: block;
+    padding: 15px;
+}
+a {
+    text-decoration: none;
+}
+.medium {
+    margin-bottom: 5px;
+    line-height: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    font-weight: normal;
+}
+.small {
+    margin-bottom: 5px;
+    max-height: 30px;
+    line-height: 15px;
+    white-space: normal;
+    overflow: hidden;
+    color: #a6a6a6;
+    font-size: 12px;
+}
+
+.float-center {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -196,4 +197,9 @@ button {
 .selected {
   background-color: #F2CB6C;
 }
-    </style>
+
+.container {
+  width: 100%;
+  height: 75%;
+}
+</style>
