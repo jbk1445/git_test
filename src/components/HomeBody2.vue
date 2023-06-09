@@ -1,6 +1,6 @@
 <template>
     <div class="image-view">
-        <div class="head-view">MATCHED</div>
+        <div class="head-view"><img class="logo" src="@/assets/New_logo.png"/></div>
         <div class="image-container">
             <img class="image" src="@/assets/phone1.png"/>
             <img class="image" src="@/assets/phone2.png"/>
@@ -26,4 +26,10 @@
     color: #008A71;
     margin-bottom: 10px;
 }
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
 </style>

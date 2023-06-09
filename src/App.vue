@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="header">
+  <div id="app" class="header" v-if="this.$store.state.token">
     <NaviBar/>
   </div>
   <router-view/>
