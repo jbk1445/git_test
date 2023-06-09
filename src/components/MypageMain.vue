@@ -43,8 +43,8 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     background-color: white;
+    height: 100%;
 }
 .box {
     width: 30%; margin: 10px;

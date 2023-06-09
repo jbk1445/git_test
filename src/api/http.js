@@ -5,21 +5,23 @@ const instance = axios.create({
   baseURL: '/api'
 })
 
-instance.interceptors.response.use(async (config) => {
-  return config
-},
-async (error) => {
-  if (error.response.status === 401 || error.response.status == null) {
-    const excludedUrls = ['/login', '/join', '/email', '/password_change']
-    const requestUrl = error.config.url
-    if (excludedUrls.includes(requestUrl)) {
-      return Promise.reject(new Error('error'))
+instance.interceptors.request.use(
+  function (config) {
+    const expdate = localStorage.getItem('expdate')
+    if (expdate) {
+      const now = Date.now()
+      if (expdate < now) {
+        alert('토큰이 만료되었습니다.')
+        alert('다시 로그인해주세요')
+        store.commit('logout')
+        this.$router.push('/')
+      }
     }
-    alert('토큰 재발행에 실패했습니다.')
-    alert('다시 로그인해주세요')
-    store.commit('logout')
-    this.router.push('/')
+    return config
+  },
+  (error) => {
+    console.log(error)
   }
-})
+)
 
 export default instance

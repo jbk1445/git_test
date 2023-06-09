@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="header">
     <NaviBar/>
   </div>
   <router-view/>
@@ -16,8 +16,11 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
-html, body {
-  height: 100%;
+.header {
+  height: 5%;
+}
+router-view {
+  height: 90%;
 }
 body {
   font-family: "Roboto", sans-serif;

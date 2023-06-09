@@ -62,10 +62,11 @@ export default {
   .mypage {
     width: 20%;
     border-right: 1px solid #ccc;
+    height: auto;
   }
 
   section {
     flex: 1;
-    height: 100%;
+    height: auto;
   }
   </style>

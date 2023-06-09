@@ -40,11 +40,17 @@ export default {
 
 <style scoped>
 aside {
-  position: fixed; width: 25%; z-index: 9; right: 0; top: 0; height: 100%; overflow-y: auto; -ms-overflow-style: none; border-left: 1px solid #d6d6d6; background-color: #fff; flex: 0.6;
+  position: fixed; width: 25%; height: auto; right: 0;
 }
 section {
-  position: fixed; flex: 3;
-  height: 100%;
-  width: 69%;
+  position: fixed; height: auto; width: 75%;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+template {
+  display: flex;
 }
 </style>

@@ -96,12 +96,11 @@ export default {
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  margin: 20px;
-  height: 800px;
+  margin: 40px;
 }
 
 .card {
-  width: 550px;
+  width: 48%;
   border-radius: 10px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -110,7 +109,7 @@ export default {
 .board {
   padding: 20px;
   height: 300px;
-  width: 510px;
+  margin: 20px;
   border: 1px solid #ccc;
 }
 

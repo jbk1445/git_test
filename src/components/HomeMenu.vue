@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import http from '@/api/http'
 import store from '@/store/index'
 import * as https from '@/api/https'
 export default {
@@ -100,15 +99,6 @@ export default {
       } else {
         this.$router.push('/')
       }
-    },
-    test () {
-      http.get('/')
-        .then(response => {
-          alert('성공')
-        })
-        .catch(error => {
-          console.log(error)
-        })
     }
   },
   watch: {
@@ -126,11 +116,6 @@ export default {
 
 .myname {
   height: 20%;
-}
-.chat {
-    display: block; margin-bottom: 5px; height: 40px; line-height: 40px; box-sizing: border-box;
-    border-radius: 40px; text-align: center; text-decoration: none;
-    font-size: 14px; text-align: center; color: #fff; background-color: #008f71;
 }
 a.list{
     display: block;
@@ -206,7 +191,7 @@ div {
 }
 
 .container {
-  width: 429px;
+  width: 100%;
 }
 
 </style>
