@@ -131,7 +131,6 @@ export default {
             console.log(this.admin, this.username)
           })
           .catch(error => {
-            alert('현재 유저 정보를 불러올수 없습니다.')
             console.log(error)
           })
       })

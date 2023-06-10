@@ -66,7 +66,6 @@ export default {
         this.sex = response.data.sex
       })
       .catch(error => {
-        alert('error')
         console.log(error)
       })
   },

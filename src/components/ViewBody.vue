@@ -57,7 +57,7 @@ export default {
           this.Boards = response.data
         })
         .catch(error => {
-          alert(error)
+          console.log(error)
         })
     },
     gowrite () {
