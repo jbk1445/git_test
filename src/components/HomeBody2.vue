@@ -2,16 +2,17 @@
     <div class="image-view">
         <div class="head-view"><img class="logo" src="@/assets/New_logo.png"/></div>
         <div class="image-container">
-            <img class="image" src="@/assets/phone1.png"/>
-            <img class="image" src="@/assets/phone2.png"/>
+            <img class="image" src="@/assets/finalapp.jpeg"/>
         </div>
     </div>
 </template>
 
 <style scoped>
 .image {
-    height: 600px;
-    width: 300px;
+    position: relative;
+    left: 10%;
+    height: 90%;
+    width: 80%;
     background-color: #0E1D31;
 }
 .image-view {
@@ -23,6 +24,8 @@
     flex-direction: column;
 }
 .head-view {
+    position: relative;
+    top: 5%;
     font-size: 35px;
     color: #008A71;
     margin-bottom: 10px;

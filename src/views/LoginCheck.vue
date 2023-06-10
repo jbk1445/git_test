@@ -57,10 +57,17 @@ export default {
           this.$router.push('/')
           setTimeout(this.refreshToken, 1000 * 60 * 5)
         } else {
-          alert('error')
+          alert('아이디나 비밀번호가 잘못입력되었습니다.')
+          location.reload()
         }
       } catch (error) {
-        console.log(error)
+        if (error.response.status === 409) {
+          alert('정지된 사용자입니다.')
+          location.reload()
+        } else {
+          alert('아이디나 비밀번호가 잘못입력되었습니다.')
+          location.reload()
+        }
       }
     },
     async refreshToken () {
