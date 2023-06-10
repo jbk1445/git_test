@@ -119,7 +119,7 @@ export default {
   margin: 0;
   list-style-type: none;
   position: absolute;
-  z-index: 2;
+  z-index: 10;
   background-color: #0E1D31;
   top: 100%;
   left: 115px;

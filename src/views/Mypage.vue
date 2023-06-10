@@ -57,12 +57,12 @@ export default {
 
 <style scoped>
 .mypage {
-  top: 10%;
-  position: fixed; width: 25%; z-index: 9; left: 0; height: 100%; overflow-y: auto; -ms-overflow-style: none; background-color: white; flex: 0.6;
+  top: 10%; z-index: 9;
+  position: fixed; width: 20%; z-index: 9; left: 0; height: 100%; overflow-y: auto; -ms-overflow-style: none; background-color: white; flex: 0.6;
 }
 
 section {
   top: 10%;
-  position: fixed; flex: 3; height: 100%; width: 75%; right: 0;
+  position: fixed; flex: 3; height: 100%; width: 80%; right: 0;
 }
 </style>
