@@ -180,7 +180,7 @@ table {
   height: 100%;
 }
 .buttons {
-  width: 30%;
+  width: 50%;
   display: flex;
 }
 
@@ -205,5 +205,11 @@ table {
 .applicant-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+td {
+  width: 5%;
+  height: 0.1%;
 }
 </style>

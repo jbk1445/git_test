@@ -154,4 +154,9 @@ table {
   position: relative;
   left: 40%;
 }
+
+td {
+  width: 5%;
+  height: 0.1%;
+}
 </style>
