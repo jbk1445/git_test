@@ -180,7 +180,8 @@ table {
   height: 100%;
 }
 .buttons {
-  width: 100%;
+  width: 30%;
+  display: flex;
 }
 
 .paginaion-buttons button {
@@ -199,5 +200,10 @@ table {
 .header h2 {
   position: relative;
   left: 38%;
+}
+
+.applicant-item {
+  display: flex;
+  align-items: center;
 }
 </style>

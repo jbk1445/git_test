@@ -134,7 +134,7 @@ table {
   height: 100%;
 }
 .buttons {
-  width: 100%;
+  width: 60%;
 }
 
 .paginaion-buttons button {

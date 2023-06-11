@@ -22,10 +22,6 @@ export default {
 
 <style scoped>
 
-.container {
-  height: 100%;
-}
-
 aside {
   position: fixed; width: 25%; z-index: 9; right: 0; top: 0; height: 100%; overflow-y: auto; -ms-overflow-style: none; background-color: white; flex: 0.6;
 }
